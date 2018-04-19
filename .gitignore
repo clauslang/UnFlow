@@ -1,6 +1,8 @@
 data
 log
 out
+venv
+.idea
 
 /config.ini
 
