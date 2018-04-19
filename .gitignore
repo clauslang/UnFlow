@@ -1,11 +1,12 @@
 data
 log
 out
-venv
+unflow_venv
 .idea
 
 /config.ini
 
+*.pyc
 *.ckpt
 *~
 
