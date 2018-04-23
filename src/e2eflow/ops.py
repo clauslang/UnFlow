@@ -49,8 +49,13 @@ def compile(op=None):
         gcc_cmd = gcc_cmd.format(config['compile']['g++'],
                                  " ".join([fn_so, fn_cu_o, fn_cc]),
                                  tf_inc, tf_lib)
+        print("")
+        print("executing gcc command...")
+        print("")
         subprocess.check_output(gcc_cmd, shell=True)
-
+        print("")
+        print("executed gcc command")
+        print("")
 
 if __name__ == "__main__":
     compile()
