@@ -41,8 +41,7 @@ def compile(op=None):
 
         # TODO: .so file issue
         # nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -D GOOGLE_CUDA=1 -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
-        # nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
-        nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -x cu -I /usr/local --expt-relaxed-constexpr"
+        nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
         nvcc_cmd = nvcc_cmd.format(" ".join([fn_cu_o, fn_cu_cc]),
                                    tf_inc, tf_lib)
         subprocess.check_output(nvcc_cmd, shell=True)
