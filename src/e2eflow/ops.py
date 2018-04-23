@@ -39,11 +39,16 @@ def compile(op=None):
         else:
             cuda_lib64_path_arg = ""
 
-        print("about to execute nvcc command...")
         nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -D GOOGLE_CUDA=1 -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
         nvcc_cmd = nvcc_cmd.format(" ".join([fn_cu_o, fn_cu_cc]),
                                    tf_inc, tf_lib)
+        print()
+        print("about to execute nvcc command...")
+        print()
         subprocess.check_output(nvcc_cmd, shell=True)
+        print()
+        print("executed nvcc command")
+        print()
         gcc_cmd = "{} -std=c++11 -shared -o {} {} -fPIC -L /usr/local/cuda/lib64 -lcudart {} -O2 -D GOOGLE_CUDA=1"
         gcc_cmd = gcc_cmd.format(config['compile']['g++'],
                                  " ".join([fn_so, fn_cu_o, fn_cc]),
