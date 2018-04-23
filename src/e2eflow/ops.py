@@ -43,7 +43,9 @@ def compile(op=None):
         nvcc_cmd = nvcc_cmd.format(" ".join([fn_cu_o, fn_cu_cc]),
                                    tf_inc, tf_lib)
         print()
-        print("about to execute nvcc command...")
+        print("about to execute the following nvcc command:")
+        print(nvcc_cmd)
+        print("...")
         print()
         subprocess.check_output(nvcc_cmd, shell=True)
         print()
