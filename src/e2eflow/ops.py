@@ -39,14 +39,14 @@ def compile(op=None):
         else:
             cuda_lib64_path_arg = ""
 
-        # nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -D GOOGLE_CUDA=1 -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
-        nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
+        nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -D GOOGLE_CUDA=1 -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
+        # nvcc_cmd = "nvcc -std=c++11 -c -o {} {} {} -x cu -Xcompiler -fPIC -I /usr/local --expt-relaxed-constexpr"
         nvcc_cmd = nvcc_cmd.format(" ".join([fn_cu_o, fn_cu_cc]),
                                    tf_inc, tf_lib)
         subprocess.check_output(nvcc_cmd, shell=True)
         # TODO: cuda vs cuda-9.0
-        # gcc_cmd = "{} -std=c++11 -shared -o {} {} -fPIC -L /usr/local/cuda/lib64 -lcudart {} -O2 -D GOOGLE_CUDA=1"
-        gcc_cmd = "{} -std=c++11 -shared -o {} {} -fPIC -L /usr/local/cuda-9.0/lib64 -lcudart {} -O2"
+        gcc_cmd = "{} -std=c++11 -shared -o {} {} -fPIC -L /usr/local/cuda-9.0/lib64 -lcudart {} -O2 -D GOOGLE_CUDA=1"
+        # gcc_cmd = "{} -std=c++11 -shared -o {} {} -fPIC -L /usr/local/cuda-9.0/lib64 -lcudart {} -O2"
         gcc_cmd = gcc_cmd.format(config['compile']['g++'],
                                  " ".join([fn_so, fn_cu_o, fn_cc]),
                                  tf_inc, tf_lib)
