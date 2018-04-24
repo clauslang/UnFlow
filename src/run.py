@@ -31,6 +31,9 @@ FLAGS = tf.app.flags.FLAGS
 
 
 def main(argv=None):
+    print()
+    print('entered main method...')
+    print()
     experiment = Experiment(
         name=FLAGS.ex,
         overwrite=FLAGS.ow)
@@ -206,4 +209,7 @@ def main(argv=None):
 
 
 if __name__ == '__main__':
+    print()
+    print('running tf app...')
+    print()
     tf.app.run()
