@@ -32,9 +32,7 @@ FLAGS = tf.app.flags.FLAGS
 
 def main(argv=None):
     # todo: remove
-    print()
     print('entered main method...')
-    print()
     experiment = Experiment(
         name=FLAGS.ex,
         overwrite=FLAGS.ow)
@@ -55,7 +53,7 @@ def main(argv=None):
     train_dataset = run_config.get('dataset', 'kitti')
 
     print("train_dataset:", train_dataset)
-    return 
+    return
     kdata = KITTIData(data_dir=dirs['data'],
                       fast_dir=dirs.get('fast'),
                       stat_log_dir=None,
@@ -213,7 +211,5 @@ def main(argv=None):
 
 if __name__ == '__main__':
     # todo: remove
-    print()
     print('running tf app...')
-    print()
     tf.app.run()
