@@ -53,7 +53,7 @@ def main(argv=None):
     train_dataset = run_config.get('dataset', 'kitti')
 
     print("train_dataset:", train_dataset)
-    return
+
     kdata = KITTIData(data_dir=dirs['data'],
                       fast_dir=dirs.get('fast'),
                       stat_log_dir=None,
