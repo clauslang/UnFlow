@@ -31,6 +31,7 @@ FLAGS = tf.app.flags.FLAGS
 
 
 def main(argv=None):
+    # todo: remove
     print()
     print('entered main method...')
     print()
@@ -52,6 +53,8 @@ def main(argv=None):
     devices = ['/gpu:' + str(gpu_num) for gpu_num in gpu_list]
 
     train_dataset = run_config.get('dataset', 'kitti')
+
+    print("train_dataset:", train_dataset)
 
     kdata = KITTIData(data_dir=dirs['data'],
                       fast_dir=dirs.get('fast'),
@@ -209,6 +212,7 @@ def main(argv=None):
 
 
 if __name__ == '__main__':
+    # todo: remove
     print()
     print('running tf app...')
     print()
