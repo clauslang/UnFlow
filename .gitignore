@@ -6,6 +6,7 @@ unflow_venv
 
 /config.ini
 
+*.pkl
 *.pyc
 *.ckpt
 *~
