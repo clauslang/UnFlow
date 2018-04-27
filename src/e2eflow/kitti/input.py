@@ -73,6 +73,7 @@ class KITTIInput(Input):
     def _input_train(self, image_dir, flow_dir, hold_out_inv=None):
         input_shape, im1, im2 = self._input_images(image_dir, hold_out_inv)
         flow_occ, mask_occ, flow_noc, mask_noc = self._input_flow(flow_dir, hold_out_inv)
+        print(input_shape)
         return tf.train.batch(
             [im1, im2, input_shape, flow_occ, mask_occ, flow_noc, mask_noc],
             batch_size=self.batch_size,
