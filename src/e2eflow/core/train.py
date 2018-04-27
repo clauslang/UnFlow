@@ -201,7 +201,6 @@ class Trainer():
             summaries = tf.get_collection(tf.GraphKeys.SUMMARIES)
             summary_ = tf.summary.merge(summaries)
 
-            print("configuring session") # todo: remove
             sess_config = tf.ConfigProto(allow_soft_placement=True)
 
             with tf.Session(config=sess_config) as sess:
@@ -252,6 +251,9 @@ class Trainer():
                         options=run_options,
                         run_metadata=run_metadata)
 
+                    print()
+                    print('ran session')
+                    print()
                     if i == 1 or i % self.params['display_interval'] == 0:
                         summary = sess.run(summary_, feed_dict=feed_dict)
                         summary_writer.add_summary(summary, i)
