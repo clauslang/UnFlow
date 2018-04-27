@@ -176,6 +176,7 @@ def main(argv=None):
         tr.run(0, siters)
 
     elif train_dataset == 'nao':
+        print('dataset: nao')
         # c&p and adjusted from synthia
         sconfig = copy.deepcopy(experiment.config['train'])
         sconfig.update(experiment.config['train_nao'])
@@ -189,6 +190,7 @@ def main(argv=None):
                             batch_size=gpu_batch_size,
                             normalize=False,
                             dims=(sconfig['height'], sconfig['width']))
+        print('initializing Trainer')
         tr = Trainer(
               lambda shift: sinput.input_raw(swap_images=False,
                                              shift=shift * run_config['batch_size']),
@@ -202,6 +204,7 @@ def main(argv=None):
               debug=FLAGS.debug,
               interactive_plot=run_config.get('interactive_plot'),
               devices=devices)
+        print('running trainer')
         tr.run(0, siters)
 
     elif train_dataset == 'kitti_ft':
