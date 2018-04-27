@@ -15,6 +15,7 @@ from e2eflow.chairs.input import ChairsInput
 from e2eflow.sintel.data import SintelData
 from e2eflow.sintel.input import SintelInput
 from e2eflow.synthia.data import SynthiaData
+from e2eflow.nao.data import NaoData
 from e2eflow.cityscapes.data import CityscapesData
 
 
@@ -163,6 +164,35 @@ def main(argv=None):
               lambda shift: sinput.input_raw(swap_images=False,
                                              shift=shift * run_config['batch_size']),
               lambda: einput.input_train_2012(),
+              params=sconfig,
+              normalization=sinput.get_normalization(),
+              train_summaries_dir=experiment.train_dir,
+              eval_summaries_dir=experiment.eval_dir,
+              experiment=FLAGS.ex,
+              ckpt_dir=experiment.save_dir,
+              debug=FLAGS.debug,
+              interactive_plot=run_config.get('interactive_plot'),
+              devices=devices)
+        tr.run(0, siters)
+
+    elif train_dataset == 'nao':
+        # c&p and adjusted from synthia
+        sconfig = copy.deepcopy(experiment.config['train'])
+        sconfig.update(experiment.config['train_nao'])
+        convert_input_strings(sconfig, dirs)
+        siters = sconfig.get('num_iters', 0)
+        sdata = NaoData(data_dir=dirs['data'],
+                fast_dir=dirs.get('fast'),
+                stat_log_dir=None,
+                development=run_config['development'])
+        sinput = KITTIInput(data=sdata,
+                            batch_size=gpu_batch_size,
+                            normalize=False,
+                            dims=(sconfig['height'], sconfig['width']))
+        tr = Trainer(
+              lambda shift: sinput.input_raw(swap_images=False,
+                                             shift=shift * run_config['batch_size']),
+              lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
               params=sconfig,
               normalization=sinput.get_normalization(),
               train_summaries_dir=experiment.train_dir,
