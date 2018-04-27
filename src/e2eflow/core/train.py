@@ -244,6 +244,11 @@ class Trainer():
                             learning_rate = self.params['learning_rate']
 
                     feed_dict = {learning_rate_: learning_rate, global_step_: i}
+                    print(feed_dict)
+                    print()
+                    print(run_options)
+                    print()
+                    print(run_metadata)
                     _, loss = sess.run(
                         [train_op, loss_],
                         feed_dict=feed_dict,
