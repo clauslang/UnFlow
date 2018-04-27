@@ -185,6 +185,7 @@ def main(argv=None):
                 fast_dir=dirs.get('fast'),
                 stat_log_dir=None,
                 development=run_config['development'])
+        print((sconfig['height'], sconfig['width']))
         sinput = KITTIInput(data=sdata,
                             batch_size=gpu_batch_size,
                             normalize=False,
