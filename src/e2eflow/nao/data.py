@@ -16,4 +16,5 @@ class NaoData(Data):
         print('ERROR: Could not find nao data')
 
     def get_raw_dirs(self):
-        return ['nao_raw/blue200']
+        # todo: custom data dir from config.ini
+        return ['../data/nao_raw/blue200']
