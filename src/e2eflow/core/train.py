@@ -202,6 +202,7 @@ class Trainer():
             summary_ = tf.summary.merge(summaries)
 
             sess_config = tf.ConfigProto(allow_soft_placement=True)
+            print(sess_config)
 
             with tf.Session(config=sess_config) as sess:
                 if self.debug:
@@ -244,15 +245,6 @@ class Trainer():
                             learning_rate = self.params['learning_rate']
 
                     feed_dict = {learning_rate_: learning_rate, global_step_: i}
-                    print(feed_dict)
-                    print()
-                    print(run_options)
-                    print()
-                    print(run_metadata)
-                    print()
-                    print(train_op)
-                    print()
-                    print(loss_)
                     _, loss = sess.run(
                         [train_op, loss_],
                         feed_dict=feed_dict,
