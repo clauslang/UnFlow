@@ -204,6 +204,7 @@ class Trainer():
             sess_config = tf.ConfigProto(allow_soft_placement=True)
             print("sess config:")
             print(sess_config)
+            print(summary_)
 
             with tf.Session(config=sess_config) as sess:
                 if self.debug:
