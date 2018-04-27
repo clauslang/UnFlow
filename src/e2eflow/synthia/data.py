@@ -46,6 +46,8 @@ class SynthiaData(Data):
             for view in views:
                 view_dir = os.path.join(seq_dir, view)
                 dirs.extend([view_dir])
+        print(dirs)
+        exit(180938120)
         return dirs
 
     def _maybe_get_synthia(self):
