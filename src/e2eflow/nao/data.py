@@ -13,7 +13,7 @@ class NaoData(Data):
                          fast_dir=fast_dir)
 
     def _fetch_if_missing(self):
-        print('ERROR: Could not find nao data')
+        pass
 
     def get_raw_dirs(self):
         # todo: custom data dir from config.ini
