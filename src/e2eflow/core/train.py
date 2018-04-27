@@ -202,7 +202,6 @@ class Trainer():
             summary_ = tf.summary.merge(summaries)
 
             sess_config = tf.ConfigProto(allow_soft_placement=True)
-            print(self.params)
 
             with tf.Session(config=sess_config) as sess:
                 if self.debug:
@@ -264,6 +263,7 @@ class Trainer():
                 coord.join(threads)
 
     def eval(self, num):
+        print("entered eval method")
         assert num == 1 # TODO enable num > 1
 
         with tf.Graph().as_default():
