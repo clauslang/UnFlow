@@ -202,6 +202,7 @@ class Trainer():
             summary_ = tf.summary.merge(summaries)
 
             sess_config = tf.ConfigProto(allow_soft_placement=True)
+            print("sess config:")
             print(sess_config)
 
             with tf.Session(config=sess_config) as sess:
