@@ -1,7 +1,4 @@
-import os
-
 from ..core.data import Data
-from ..util import tryremove
 
 
 class NaoData(Data):
