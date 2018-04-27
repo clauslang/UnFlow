@@ -244,16 +244,12 @@ class Trainer():
                             learning_rate = self.params['learning_rate']
 
                     feed_dict = {learning_rate_: learning_rate, global_step_: i}
-                    print("running session") #todo: remove
                     _, loss = sess.run(
                         [train_op, loss_],
                         feed_dict=feed_dict,
                         options=run_options,
                         run_metadata=run_metadata)
 
-                    print()
-                    print('ran session')
-                    print()
                     if i == 1 or i % self.params['display_interval'] == 0:
                         summary = sess.run(summary_, feed_dict=feed_dict)
                         summary_writer.add_summary(summary, i)
