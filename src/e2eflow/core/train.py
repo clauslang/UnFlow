@@ -249,6 +249,10 @@ class Trainer():
                     print(run_options)
                     print()
                     print(run_metadata)
+                    print()
+                    print(train_op)
+                    print()
+                    print(loss_)
                     _, loss = sess.run(
                         [train_op, loss_],
                         feed_dict=feed_dict,
