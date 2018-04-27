@@ -138,6 +138,7 @@ class Trainer():
 
         assert (max_iter - start_iter + 1) % save_interval == 0
         for i in range(start_iter, max_iter + 1, save_interval):
+            print(i)
             self.train(i, i + save_interval - 1, i - (min_iter + 1))
             self.eval(1)
 
@@ -185,6 +186,7 @@ class Trainer():
         return train_op, loss_
 
     def train(self, start_iter, max_iter, iter_offset):
+        print('entered train method')
         ckpt = tf.train.get_checkpoint_state(self.ckpt_dir)
 
         with tf.Graph().as_default(), tf.device(self.shared_device):
