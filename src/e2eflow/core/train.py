@@ -263,7 +263,6 @@ class Trainer():
                 coord.join(threads)
 
     def eval(self, num):
-        print("entered eval method")
         assert num == 1 # TODO enable num > 1
 
         with tf.Graph().as_default():
