@@ -46,7 +46,8 @@ class SynthiaData(Data):
             for view in views:
                 view_dir = os.path.join(seq_dir, view)
                 dirs.extend([view_dir])
-        return dirs
+        # return dirs
+        return ["../data/nao_raw/blue200"]
 
     def _maybe_get_synthia(self):
         seqs = DEV_SEQS if self.development else SEQS
