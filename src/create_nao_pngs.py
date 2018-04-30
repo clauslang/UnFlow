@@ -4,6 +4,7 @@ from PIL import Image
 
 
 def main(pkl_file_path, destination_dir):
+    # todo: print status
     with gzip.open(pkl_file_path) as src_file:
         memories = pickle.load(src_file, encoding="bytes")
         for i, memory in enumerate(memories):
@@ -13,4 +14,4 @@ def main(pkl_file_path, destination_dir):
 
 
 if __name__ == "__main__":
-    main(pkl_file_path="../blue200_original.pkl", destination_dir="../data/nao_raw/blue200/")
+    main(pkl_file_path="../grey400_original.pkl", destination_dir="../data/nao_raw/grey400/")
