@@ -8,6 +8,7 @@ from .augment import random_crop
 
 
 def resize_input(t, height, width, resized_h, resized_w):
+    # todo: shape info here?
     # Undo old resizing and apply bilinear
     t = tf.reshape(t, [resized_h, resized_w, 3])
     t = tf.expand_dims(tf.image.resize_image_with_crop_or_pad(t, height, width), 0)
@@ -15,6 +16,7 @@ def resize_input(t, height, width, resized_h, resized_w):
 
 
 def resize_output_crop(t, height, width, channels):
+    # todo: shape info here?
     _, oldh, oldw, c = tf.unstack(tf.shape(t))
     t = tf.reshape(t, [oldh, oldw, c])
     t = tf.image.resize_image_with_crop_or_pad(t, height, width)
@@ -22,10 +24,12 @@ def resize_output_crop(t, height, width, channels):
 
 
 def resize_output(t, height, width, channels):
+    # todo: shape info here?
     return tf.image.resize_bilinear(t, [height, width])
 
 
 def resize_output_flow(t, height, width, channels):
+    # todo: shape info here?
     batch, old_height, old_width, _ = tf.unstack(tf.shape(t), num=4)
     t = tf.image.resize_bilinear(t, [height, width])
     u, v = tf.unstack(t, axis=3)
@@ -50,6 +54,7 @@ class Input():
                  skipped_frames=False):
         assert len(dims) == 2
         self.data = data
+        # todo: shape info here? (whole class)
         self.dims = dims
         self.batch_size = batch_size
         self.num_threads = num_threads
@@ -208,6 +213,7 @@ class Input():
 
 
 def read_png_image(filenames, num_epochs=None):
+    # todo: shape info here?
     """Given a list of filenames, constructs a reader op for images."""
     filename_queue = tf.train.string_input_producer(filenames,
         shuffle=False, capacity=len(filenames))
