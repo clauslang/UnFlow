@@ -186,7 +186,6 @@ def main(argv=None):
                 fast_dir=dirs.get('fast'),
                 stat_log_dir=None,
                 development=run_config['development'])
-        # todo: input class: need to write nao specific one, like for chairs e.g.?
         ninput = Input(data=ndata,
                             batch_size=gpu_batch_size,
                             normalize=False,
@@ -195,8 +194,8 @@ def main(argv=None):
               lambda shift: ninput.input_raw(swap_images=False,
                                              shift=shift * run_config['batch_size'],
                                              needs_crop=True),
-              # lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
-              lambda: None,
+              lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
+              # lambda: None,
               params=nconfig,
               normalization=ninput.get_normalization(),
               train_summaries_dir=experiment.train_dir,
