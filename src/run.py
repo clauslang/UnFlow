@@ -8,6 +8,7 @@ from e2eflow.core.train import Trainer
 from e2eflow.experiment import Experiment
 from e2eflow.util import convert_input_strings
 
+from e2eflow.core.input import Input
 from e2eflow.kitti.input import KITTIInput
 from e2eflow.kitti.data import KITTIData
 from e2eflow.chairs.data import ChairsData
@@ -177,24 +178,27 @@ def main(argv=None):
 
     elif train_dataset == 'nao':
         # c&p and adjusted from synthia
-        sconfig = copy.deepcopy(experiment.config['train'])
-        sconfig.update(experiment.config['train_nao'])
-        convert_input_strings(sconfig, dirs)
-        siters = sconfig.get('num_iters', 0)
-        sdata = NaoData(data_dir=dirs['data'],
+        nconfig = copy.deepcopy(experiment.config['train'])
+        nconfig.update(experiment.config['train_nao'])
+        convert_input_strings(nconfig, dirs)
+        niters = nconfig.get('num_iters', 0)
+        ndata = NaoData(data_dir=dirs['data'],
                 fast_dir=dirs.get('fast'),
                 stat_log_dir=None,
                 development=run_config['development'])
-        sinput = KITTIInput(data=sdata,
+        # todo: input class: need to write nao specific one, like for chairs e.g.?
+        ninput = Input(data=ndata,
                             batch_size=gpu_batch_size,
                             normalize=False,
-                            dims=(sconfig['height'], sconfig['width']))
+                            dims=(nconfig['height'], nconfig['width']))
         tr = Trainer(
-              lambda shift: sinput.input_raw(swap_images=False,
-                                             shift=shift * run_config['batch_size']),
-              lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
-              params=sconfig,
-              normalization=sinput.get_normalization(),
+              lambda shift: ninput.input_raw(swap_images=False,
+                                             shift=shift * run_config['batch_size'],
+                                             needs_crop=True),
+              # lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
+              lambda: None,
+              params=nconfig,
+              normalization=ninput.get_normalization(),
               train_summaries_dir=experiment.train_dir,
               eval_summaries_dir=experiment.eval_dir,
               experiment=FLAGS.ex,
@@ -202,7 +206,7 @@ def main(argv=None):
               debug=FLAGS.debug,
               interactive_plot=run_config.get('interactive_plot'),
               devices=devices)
-        tr.run(0, siters)
+        tr.run(0, niters)
 
     elif train_dataset == 'kitti_ft':
         ftconfig = copy.deepcopy(experiment.config['train'])
@@ -231,7 +235,7 @@ def main(argv=None):
     else:
       raise ValueError(
           "Invalid dataset. Dataset must be one of "
-          "{synthia, kitti, kitti_ft, cityscapes, chairs}")
+          "{synthia, kitti, kitti_ft, cityscapes, chairs, nao}")
 
     if not FLAGS.debug:
         experiment.conclude()
