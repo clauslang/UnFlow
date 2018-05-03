@@ -109,9 +109,9 @@ class Input():
 
     def _input_test(self, image_dir, hold_out_inv=None):
         input_shape, im1, im2 = self._input_images(image_dir, hold_out_inv)
-        print('input shape:', input_shape)
-        print('im1 shape:', tf.shape(im1))
-        print('im2 shape:', tf.shape(im2))
+        print('input shape:', tf.Print(input_shape))
+        print('im1 shape:', im1.get_shape())
+        print('im2 shape:', im2.get_shape())
         print('entering tf.train.batch')
         return tf.train.batch(
             [im1, im2, input_shape],
