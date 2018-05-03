@@ -4,6 +4,8 @@ import copy
 import tensorflow as tf
 from tensorflow.python.client import device_lib
 
+from datetime import datetime
+
 from e2eflow.core.train import Trainer
 from e2eflow.experiment import Experiment
 from e2eflow.util import convert_input_strings
@@ -239,6 +241,8 @@ def main(argv=None):
     if not FLAGS.debug:
         experiment.conclude()
 
+    print('done with training at:')
+    print(str(datetime.now()))
 
 if __name__ == '__main__':
     tf.app.run()
