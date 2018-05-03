@@ -96,6 +96,7 @@ class Input():
             filenames_1.append(os.path.join(image_dir, image_files[i * 2]))
             filenames_2.append(os.path.join(image_dir, image_files[i * 2 + 1]))
 
+        print('hold_out_inv:', hold_out_inv)
         if hold_out_inv is not None:
             filenames = list(zip(filenames_1, filenames_2))
             random.seed(0)
