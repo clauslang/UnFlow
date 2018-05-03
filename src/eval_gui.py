@@ -306,7 +306,8 @@ def main(argv=None):
         data = NaoData(dirs['data'])
         data_input = NaoInput(data=data, batch_size=1, normalize=False,
                               # dims=(192, 256))
-                              dims=(240, 320))
+                              # dims=(240, 320))
+                              dims=(320, 240))
     elif FLAGS.dataset == 'chairs':
         data = ChairsData(dirs['data'], development=True)
         data_input = ChairsInput(data, batch_size=1, normalize=False,
