@@ -105,6 +105,7 @@ class Input():
         input_2 = read_png_image(filenames_2, 1)
         image_1 = self._preprocess_image(input_1)
         image_2 = self._preprocess_image(input_2)
+        print(input_1.get_shape())
         return tf.shape(input_1), image_1, image_2
 
     def _input_test(self, image_dir, hold_out_inv=None):
