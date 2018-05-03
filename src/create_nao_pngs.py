@@ -12,7 +12,7 @@ def main(pkl_file_path, destination_dir):
         print('extracting {} images..'.format(len(memories)))
         for i, memory in enumerate(memories):
             if i % 100 == 0:
-                print('extracted {} images'.format(i))
+                print('extracted {} / {} images'.format(i, len(memories)))
             name = destination_dir + "nao_img_" + str(i).zfill(6) + ".png"
             image = memory[b'image'][:, :, ::-1]    # convert from BGR to RGB
             Image.fromarray(image).save(name)
