@@ -305,7 +305,7 @@ def main(argv=None):
         inputs = getattr(data_input, 'input_' + FLAGS.variant)()
     elif FLAGS.dataset == 'nao':
         data = NaoData(dirs['data'], development=True)
-        data_input = NaoInput(data, batch_size=1, normalize=False,
+        data_input = NaoInput(data, batch_size=1, normalize=True,
                               dims=(192, 256))
                               # dims=(240, 320))
     elif FLAGS.dataset == 'chairs':
