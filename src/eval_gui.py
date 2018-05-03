@@ -8,6 +8,8 @@ import png
 
 from e2eflow.core.flow_util import flow_to_color, flow_error_avg, outlier_pct
 from e2eflow.core.flow_util import flow_error_image
+from e2eflow.nao.data import NaoData
+from e2eflow.core.input import Input
 from e2eflow.util import config_dict
 from e2eflow.core.image_warp import image_warp
 from e2eflow.kitti.input import KITTIInput
@@ -300,6 +302,9 @@ def main(argv=None):
         data_input = KITTIInput(data, batch_size=1, normalize=False,
                                  dims=(384,1280))
         inputs = getattr(data_input, 'input_' + FLAGS.variant)()
+    elif FLAGS.dataset == 'nao':
+        data = NaoData(dirs['data'])
+        data_input = Input(data=data, batch_size=1, normalize=False, dims=(240, 320))
     elif FLAGS.dataset == 'chairs':
         data = ChairsData(dirs['data'], development=True)
         data_input = ChairsInput(data, batch_size=1, normalize=False,
