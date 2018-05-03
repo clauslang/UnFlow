@@ -110,7 +110,6 @@ class Input():
         input_2 = read_png_image(filenames_2, 1)
         image_1 = self._preprocess_image(input_1)
         image_2 = self._preprocess_image(input_2)
-        print(tf.shape(input_1))
         return tf.shape(input_1), image_1, image_2
 
     def _input_test(self, image_dir, hold_out_inv=None):
@@ -215,7 +214,6 @@ class Input():
 
 
 def read_png_image(filenames, num_epochs=None):
-    # todo: shape info here?
     """Given a list of filenames, constructs a reader op for images."""
     filename_queue = tf.train.string_input_producer(filenames,
         shuffle=False, capacity=len(filenames))

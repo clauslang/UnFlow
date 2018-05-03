@@ -6,7 +6,7 @@ import tensorflow as tf
 class NaoInput(Input):
 
     def input_test(self):
-        input_shape, im1, im2 = self._input_images('nao_raw/blue200')
+        input_shape, im1, im2 = self._input_test('nao_raw/blue200')
         return tf.train.batch(
             [im1, im2, input_shape],
             batch_size=self.batch_size,
