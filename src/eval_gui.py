@@ -300,8 +300,7 @@ def main(argv=None):
     if FLAGS.dataset == 'kitti':
         data = KITTIData(dirs['data'], development=True)
         data_input = KITTIInput(data, batch_size=1, normalize=False,
-                                 # dims=(384,1280))
-                                 dims=(384,1281))
+                                 dims=(384,1280))
         inputs = getattr(data_input, 'input_' + FLAGS.variant)()
     elif FLAGS.dataset == 'nao':
         data = NaoData(dirs['data'], development=True)
