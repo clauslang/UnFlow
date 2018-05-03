@@ -8,7 +8,6 @@ from .augment import random_crop
 
 
 def resize_input(t, height, width, resized_h, resized_w):
-    # todo: shape info here?
     # Undo old resizing and apply bilinear
     t = tf.reshape(t, [resized_h, resized_w, 3])
     t = tf.expand_dims(tf.image.resize_image_with_crop_or_pad(t, height, width), 0)
@@ -16,7 +15,6 @@ def resize_input(t, height, width, resized_h, resized_w):
 
 
 def resize_output_crop(t, height, width, channels):
-    # todo: shape info here?
     _, oldh, oldw, c = tf.unstack(tf.shape(t))
     t = tf.reshape(t, [oldh, oldw, c])
     t = tf.image.resize_image_with_crop_or_pad(t, height, width)
@@ -24,12 +22,10 @@ def resize_output_crop(t, height, width, channels):
 
 
 def resize_output(t, height, width, channels):
-    # todo: shape info here?
     return tf.image.resize_bilinear(t, [height, width])
 
 
 def resize_output_flow(t, height, width, channels):
-    # todo: shape info here?
     batch, old_height, old_width, _ = tf.unstack(tf.shape(t), num=4)
     t = tf.image.resize_bilinear(t, [height, width])
     u, v = tf.unstack(t, axis=3)
@@ -54,7 +50,6 @@ class Input():
                  skipped_frames=False):
         assert len(dims) == 2
         self.data = data
-        # todo: shape info here? (whole class)
         self.dims = dims
         self.batch_size = batch_size
         self.num_threads = num_threads
@@ -114,7 +109,6 @@ class Input():
 
     def _input_test(self, image_dir, hold_out_inv=None):
         input_shape, im1, im2 = self._input_images(image_dir, hold_out_inv)
-        print('input shape:', input_shape)
         return tf.train.batch(
             [im1, im2, input_shape],
             batch_size=self.batch_size,
