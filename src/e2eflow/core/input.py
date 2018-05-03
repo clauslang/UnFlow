@@ -90,7 +90,6 @@ class Input():
         image_files = os.listdir(image_dir)
         image_files.sort()
 
-        print(len(image_files))
         assert len(image_files) % 2 == 0, 'expected pairs of images'
 
         for i in range(len(image_files) // 2):
@@ -111,6 +110,7 @@ class Input():
         input_2 = read_png_image(filenames_2, 1)
         image_1 = self._preprocess_image(input_1)
         image_2 = self._preprocess_image(input_2)
+        print(tf.shape(input_1))
         return tf.shape(input_1), image_1, image_2
 
     def _input_test(self, image_dir, hold_out_inv=None):
