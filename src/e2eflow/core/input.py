@@ -90,6 +90,7 @@ class Input():
         image_files = os.listdir(image_dir)
         image_files.sort()
 
+        print(len(image_files))
         assert len(image_files) % 2 == 0, 'expected pairs of images'
 
         for i in range(len(image_files) // 2):
