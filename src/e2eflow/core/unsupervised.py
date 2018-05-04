@@ -33,9 +33,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     im2 = im2 / 255.0
     im_shape = tf.shape(im1)[1:3]
 
-    print('cp0')
-    print()
-
     # -------------------------------------------------------------------------
     # Data & mask augmentation
     border_mask = create_border_mask(im1, 0.1)
@@ -66,9 +63,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
         im1_geo, im2_geo = im1, im2
         im1_photo, im2_photo = im1, im2
 
-    print('cp1')
-    print()
-
     # Images for loss comparisons with values in [0, 1] (scale to original using * 255)
     im1_norm = im1_geo
     im2_norm = im2_geo
@@ -89,7 +83,7 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     flows_fw = flows_fw[-1]
     flows_bw = flows_bw[-1]
 
-    print('cp2')
+    print('cp2')    # passed
     print()
 
     # -------------------------------------------------------------------------
@@ -123,6 +117,9 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     else:
         flow_enum = [(0, (flows_fw[0], flows_bw[0]))]
 
+    print('cp3')
+    print()
+
     for i, flow_pair in flow_enum:
         layer_name = "loss" + str(i + 2)
 
@@ -155,6 +152,9 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
             im1_s = downsample(im1_s, 2)
             im2_s = downsample(im2_s, 2)
             mask_s = downsample(mask_s, 2)
+
+    print('cp4')
+    print()
 
     regularization_loss = tf.losses.get_regularization_loss()
     final_loss = combined_loss + regularization_loss
