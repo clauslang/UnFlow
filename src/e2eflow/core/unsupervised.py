@@ -114,8 +114,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     else:
         flow_enum = [(0, (flows_fw[0], flows_bw[0]))]
 
-    print(len(zip(flows_fw, flows_bw)))
-
     for i, flow_pair in flow_enum:
 
         layer_name = "loss" + str(i + 2)
@@ -146,10 +144,10 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
 
             combined_loss += layer_weight * layer_loss
 
-
-            im1_s = downsample(im1_s, 2)
-            im2_s = downsample(im2_s, 2)
-            mask_s = downsample(mask_s, 2)
+            if i < 4:
+                im1_s = downsample(im1_s, 2)
+                im2_s = downsample(im2_s, 2)
+                mask_s = downsample(mask_s, 2)
 
     regularization_loss = tf.losses.get_regularization_loss()
     final_loss = combined_loss + regularization_loss
