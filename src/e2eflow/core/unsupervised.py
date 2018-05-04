@@ -109,9 +109,13 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     for loss in LOSSES:
         combined_losses[loss] = 0.0
 
+
+
+    print(flows_fw)
+    print(flows_bw)
+
     if params.get('pyramid_loss'):
         flow_enum = enumerate(zip(flows_fw, flows_bw))
-        print('pyr loss')
     else:
         flow_enum = [(0, (flows_fw[0], flows_bw[0]))]
 
