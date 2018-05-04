@@ -109,25 +109,14 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     for loss in LOSSES:
         combined_losses[loss] = 0.0
 
-
-
-    print(flows_fw)
-    print(flows_bw)
-
     if params.get('pyramid_loss'):
         flow_enum = enumerate(zip(flows_fw, flows_bw))
     else:
         flow_enum = [(0, (flows_fw[0], flows_bw[0]))]
 
-    print('cp3')    # passed
-    print()
+    print(len(zip(flows_fw, flows_bw)))
 
     for i, flow_pair in flow_enum:
-        print('i = ', i)
-
-        print(flow_pair)
-
-        print()
 
         layer_name = "loss" + str(i + 2)
 
@@ -157,15 +146,10 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
 
             combined_loss += layer_weight * layer_loss
 
-            print('doing im1')
-            im1_s = downsample(im1_s, 2)
-            print('doing im2')
-            im2_s = downsample(im2_s, 2)
-            print('doing mask')
-            mask_s = downsample(mask_s, 2)
 
-    print('cp4') # not passed
-    print()
+            im1_s = downsample(im1_s, 2)
+            im2_s = downsample(im2_s, 2)
+            mask_s = downsample(mask_s, 2)
 
     regularization_loss = tf.losses.get_regularization_loss()
     final_loss = combined_loss + regularization_loss
