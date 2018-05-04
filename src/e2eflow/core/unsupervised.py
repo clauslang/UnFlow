@@ -144,6 +144,7 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
 
             combined_loss += layer_weight * layer_loss
 
+            assert i < 5, 'hardcoded code ommission erroneous!'
             if i < 4:
                 im1_s = downsample(im1_s, 2)
                 im2_s = downsample(im2_s, 2)
