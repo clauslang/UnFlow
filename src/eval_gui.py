@@ -95,9 +95,8 @@ def write_flo(flow, filename):
     f.close()
 
 
+# todo: remove checkpoints when problem is solved
 def _evaluate_experiment(name, input_fn, data_input):
-    print('cp0')
-    print()
     normalize_fn = data_input._normalize_image
     resized_h = data_input.dims[0]
     resized_w = data_input.dims[1]
@@ -120,7 +119,7 @@ def _evaluate_experiment(name, input_fn, data_input):
         raise RuntimeError("Error: experiment must contain a checkpoint")
     ckpt_path = exp_dir + "/" + os.path.basename(ckpt.model_checkpoint_path)
 
-    print('cp1')
+    print('cp1') # passed
     print()
 
     with tf.Graph().as_default(): #, tf.device('gpu:' + FLAGS.gpu):
@@ -132,6 +131,9 @@ def _evaluate_experiment(name, input_fn, data_input):
         im1 = resize_input(im1, height, width, resized_h, resized_w)
         im2 = resize_input(im2, height, width, resized_h, resized_w) # TODO adapt train.py
 
+        print('cp2')
+        print()
+        
         _, flow, flow_bw = unsupervised_loss(
             (im1, im2),
             normalization=data_input.get_normalization(),
