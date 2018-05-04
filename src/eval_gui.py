@@ -119,9 +119,6 @@ def _evaluate_experiment(name, input_fn, data_input):
         raise RuntimeError("Error: experiment must contain a checkpoint")
     ckpt_path = exp_dir + "/" + os.path.basename(ckpt.model_checkpoint_path)
 
-    print('cp1') # passed
-    print()
-
     with tf.Graph().as_default(): #, tf.device('gpu:' + FLAGS.gpu):
         inputs = input_fn()
         im1, im2, input_shape = inputs[:3]
@@ -131,13 +128,16 @@ def _evaluate_experiment(name, input_fn, data_input):
         im1 = resize_input(im1, height, width, resized_h, resized_w)
         im2 = resize_input(im2, height, width, resized_h, resized_w) # TODO adapt train.py
 
-        print('cp2')
+        print('cp2') # passed
         print()
-        
+
         _, flow, flow_bw = unsupervised_loss(
             (im1, im2),
             normalization=data_input.get_normalization(),
             params=params, augment=False, return_flow=True)
+
+        print('cp3')
+        print()
 
         im1 = resize_output(im1, height, width, 3)
         im2 = resize_output(im2, height, width, 3)
@@ -153,7 +153,7 @@ def _evaluate_experiment(name, input_fn, data_input):
 
         #flow_bw_warped = image_warp(flow_bw, flow)
 
-        print('cp3')
+        print('cp4') # not passed
         print(len(truth))
         print()
 
