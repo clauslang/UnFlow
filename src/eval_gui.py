@@ -136,7 +136,7 @@ def _evaluate_experiment(name, input_fn, data_input):
             normalization=data_input.get_normalization(),
             params=params, augment=False, return_flow=True)
 
-        print('cp3')
+        print('cp3') # not passed
         print()
 
         im1 = resize_output(im1, height, width, 3)

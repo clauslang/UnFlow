@@ -24,6 +24,7 @@ def _track_image(op, name):
     tf.add_to_collection('train_images', tf.identity(op, name=name))
 
 
+# todo: remove print statements after problem solved
 def unsupervised_loss(batch, params, normalization=None, augment=True,
                       return_flow=False):
     channel_mean = tf.constant(normalization[0]) / 255.0
@@ -31,6 +32,9 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     im1 = im1 / 255.0
     im2 = im2 / 255.0
     im_shape = tf.shape(im1)[1:3]
+
+    print('cp0')
+    print()
 
     # -------------------------------------------------------------------------
     # Data & mask augmentation
@@ -62,6 +66,9 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
         im1_geo, im2_geo = im1, im2
         im1_photo, im2_photo = im1, im2
 
+    print('cp1')
+    print()
+
     # Images for loss comparisons with values in [0, 1] (scale to original using * 255)
     im1_norm = im1_geo
     im2_norm = im2_geo
@@ -81,6 +88,9 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
 
     flows_fw = flows_fw[-1]
     flows_bw = flows_bw[-1]
+
+    print('cp2')
+    print()
 
     # -------------------------------------------------------------------------
     # Losses
