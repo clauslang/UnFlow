@@ -117,12 +117,8 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     print('cp3')    # passed
     print()
 
-    counter = 0
-    for _ in flow_enum:
-        counter += 1
-    print('len flow_enum:', counter)
-
     for i, flow_pair in flow_enum:
+        print(i)
         layer_name = "loss" + str(i + 2)
 
         flow_scale = final_flow_scale / (2 ** i)
