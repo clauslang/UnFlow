@@ -95,7 +95,6 @@ def write_flo(flow, filename):
     f.close()
 
 
-# todo: remove checkpoints when problem is solved
 def _evaluate_experiment(name, input_fn, data_input):
     normalize_fn = data_input._normalize_image
     resized_h = data_input.dims[0]
@@ -128,16 +127,10 @@ def _evaluate_experiment(name, input_fn, data_input):
         im1 = resize_input(im1, height, width, resized_h, resized_w)
         im2 = resize_input(im2, height, width, resized_h, resized_w) # TODO adapt train.py
 
-        print('cp2') # passed
-        print()
-
         _, flow, flow_bw = unsupervised_loss(
             (im1, im2),
             normalization=data_input.get_normalization(),
             params=params, augment=False, return_flow=True)
-
-        print('cp3') # not passed
-        print()
 
         im1 = resize_output(im1, height, width, 3)
         im2 = resize_output(im2, height, width, 3)
@@ -152,10 +145,6 @@ def _evaluate_experiment(name, input_fn, data_input):
         #im2_diff = tf.abs(im1 - im2)
 
         #flow_bw_warped = image_warp(flow_bw, flow)
-
-        print('cp4') # not passed
-        print(len(truth))
-        print()
 
         if len(truth) == 4:
             flow_occ, mask_occ, flow_noc, mask_noc = truth
@@ -235,9 +224,6 @@ def _evaluate_experiment(name, input_fn, data_input):
             os.makedirs(exp_out_dir)
             shutil.copyfile(config_path, os.path.join(exp_out_dir, 'config.ini'))
 
-        print('cp4')
-        print()
-
         with tf.Session(config=sess_config) as sess:
             saver = tf.train.Saver(tf.global_variables())
             sess.run(tf.global_variables_initializer())
@@ -294,9 +280,6 @@ def _evaluate_experiment(name, input_fn, data_input):
 
             coord.request_stop()
             coord.join(threads)
-
-    print('cp5')
-    print()
 
     for t, avg in zip(scalar_slots, averages):
         _, scalar_name = t
