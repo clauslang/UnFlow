@@ -117,6 +117,8 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     print('cp3')    # passed
     print()
 
+    print('len flow_enum:', len(flow_enum))
+
     for i, flow_pair in flow_enum:
         layer_name = "loss" + str(i + 2)
 
@@ -152,8 +154,11 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
 
             print('cp c')
 
+            print('doing im1')
             im1_s = downsample(im1_s, 2)
+            print('doing im2')
             im2_s = downsample(im2_s, 2)
+            print('doing mask')
             mask_s = downsample(mask_s, 2)
 
     print('cp4') # not passed
