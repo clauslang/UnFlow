@@ -118,7 +118,7 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     print()
 
     for i, flow_pair in flow_enum:
-        print(i)
+        print('i = ', i)
         layer_name = "loss" + str(i + 2)
 
         flow_scale = final_flow_scale / (2 ** i)
@@ -130,8 +130,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
             mask_occlusion = params.get('mask_occlusion', '')
             assert mask_occlusion in ['fb', 'disocc', '']
 
-            print('cp a')
-
             losses = compute_losses(im1_s, im2_s,
                                     flow_fw_s * flow_scale, flow_bw_s * flow_scale,
                                     border_mask=mask_s if params.get('border_mask') else None,
@@ -139,8 +137,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
                                     data_max_distance=layer_patch_distances[i])
 
             layer_loss = 0.0
-
-            print('cp b')
 
             for loss in LOSSES:
                 weight_name = loss + '_weight'
@@ -150,8 +146,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
                     combined_losses[loss] += layer_weight * losses[loss]
 
             combined_loss += layer_weight * layer_loss
-
-            print('cp c')
 
             print('doing im1')
             im1_s = downsample(im1_s, 2)
