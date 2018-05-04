@@ -14,4 +14,4 @@ class NaoData(Data):
 
     def get_raw_dirs(self):
         # todo: custom data dir from config.ini
-        return ['../data/nao_raw/blue200']
+        return ['../data/nao_raw/grey400']
