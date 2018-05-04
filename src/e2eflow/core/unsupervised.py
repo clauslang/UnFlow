@@ -83,9 +83,6 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     flows_fw = flows_fw[-1]
     flows_bw = flows_bw[-1]
 
-    print('cp2')    # passed
-    print()
-
     # -------------------------------------------------------------------------
     # Losses
     layer_weights = [12.7, 4.35, 3.9, 3.4, 1.1]
@@ -117,7 +114,7 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
     else:
         flow_enum = [(0, (flows_fw[0], flows_bw[0]))]
 
-    print('cp3')
+    print('cp3')    # passed
     print()
 
     for i, flow_pair in flow_enum:
@@ -132,6 +129,8 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
             mask_occlusion = params.get('mask_occlusion', '')
             assert mask_occlusion in ['fb', 'disocc', '']
 
+            print('cp a')
+
             losses = compute_losses(im1_s, im2_s,
                                     flow_fw_s * flow_scale, flow_bw_s * flow_scale,
                                     border_mask=mask_s if params.get('border_mask') else None,
@@ -139,6 +138,8 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
                                     data_max_distance=layer_patch_distances[i])
 
             layer_loss = 0.0
+
+            print('cp b')
 
             for loss in LOSSES:
                 weight_name = loss + '_weight'
@@ -149,11 +150,13 @@ def unsupervised_loss(batch, params, normalization=None, augment=True,
 
             combined_loss += layer_weight * layer_loss
 
+            print('cp c')
+
             im1_s = downsample(im1_s, 2)
             im2_s = downsample(im2_s, 2)
             mask_s = downsample(mask_s, 2)
 
-    print('cp4')
+    print('cp4') # not passed
     print()
 
     regularization_loss = tf.losses.get_regularization_loss()
