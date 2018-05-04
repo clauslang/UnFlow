@@ -337,8 +337,5 @@ def main(argv=None):
     display(results, image_names)
 
 
-
-
-
 if __name__ == '__main__':
     tf.app.run()
