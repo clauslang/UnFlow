@@ -96,6 +96,8 @@ def write_flo(flow, filename):
 
 
 def _evaluate_experiment(name, input_fn, data_input):
+    print('cp0')
+    print()
     normalize_fn = data_input._normalize_image
     resized_h = data_input.dims[0]
     resized_w = data_input.dims[1]
@@ -117,6 +119,9 @@ def _evaluate_experiment(name, input_fn, data_input):
     if not ckpt:
         raise RuntimeError("Error: experiment must contain a checkpoint")
     ckpt_path = exp_dir + "/" + os.path.basename(ckpt.model_checkpoint_path)
+
+    print('cp1')
+    print()
 
     with tf.Graph().as_default(): #, tf.device('gpu:' + FLAGS.gpu):
         inputs = input_fn()
@@ -145,6 +150,10 @@ def _evaluate_experiment(name, input_fn, data_input):
         #im2_diff = tf.abs(im1 - im2)
 
         #flow_bw_warped = image_warp(flow_bw, flow)
+
+        print('cp3')
+        print(len(truth))
+        print()
 
         if len(truth) == 4:
             flow_occ, mask_occ, flow_noc, mask_noc = truth
@@ -224,6 +233,9 @@ def _evaluate_experiment(name, input_fn, data_input):
             os.makedirs(exp_out_dir)
             shutil.copyfile(config_path, os.path.join(exp_out_dir, 'config.ini'))
 
+        print('cp4')
+        print()
+
         with tf.Session(config=sess_config) as sess:
             saver = tf.train.Saver(tf.global_variables())
             sess.run(tf.global_variables_initializer())
@@ -280,6 +292,9 @@ def _evaluate_experiment(name, input_fn, data_input):
 
             coord.request_stop()
             coord.join(threads)
+
+    print('cp5')
+    print()
 
     for t, avg in zip(scalar_slots, averages):
         _, scalar_name = t
