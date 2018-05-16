@@ -25,8 +25,6 @@ def flow_to_color(flow, mask=None, max_flow=None):
         mask: flow validity mask of shape [num_batch, height, width, 1].
     """
 
-    print('converting...')
-
     n = 8
     num_batch, height, width, _ = tf.unstack(tf.shape(flow))
     mask = tf.ones([num_batch, height, width, 1]) if mask is None else mask
@@ -45,7 +43,12 @@ def flow_to_color(flow, mask=None, max_flow=None):
     im = tf.image.hsv_to_rgb(im_hsv)
 
     # return im * mask
-    return tf.expand_dims(mag, -1) * mask
+
+    threshold = 10
+    mag = tf.expand_dims(mag, -1)
+    indices = tf.greater(mag, threshold)
+    thresholded = mag * indices
+    return thresholded * mask
 
 
 def flow_error_image(flow_1, flow_2, mask_occ, mask_noc=None, log_colors=True):
