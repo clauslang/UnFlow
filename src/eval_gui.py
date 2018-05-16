@@ -146,11 +146,7 @@ def _evaluate_experiment(name, input_fn, data_input):
 
         #flow_bw_warped = image_warp(flow_bw, flow)
 
-        print()
-        print('length of truth', len(truth))
-        print('truth:', truth)
-        print()
-
+        # len(truth) == 0 for nao data
         if len(truth) == 4:
             flow_occ, mask_occ, flow_noc, mask_noc = truth
             flow_occ = resize_output_crop(flow_occ, height, width, 2)
@@ -204,10 +200,10 @@ def _evaluate_experiment(name, input_fn, data_input):
             scalar_slots = [(flow_error_avg(flow_gt, flow, mask), 'EPE_all')]
         else:
             image_slots = [(im1 / 255, 'first image'),
-                           #(im1_pred / 255, 'warped second image', 0, 1),
+                           (im1_pred / 255, 'warped second image', 0, 1),
                            (im1_diff / 255, 'warp error'),
-                           #(im2 / 255, 'second image', 1, 0),
-                           #(im2_diff / 255, '|first - second|', 1, 2),
+                           (im2 / 255, 'second image', 1, 0),
+                           # (im2_diff / 255, '|first - second|', 1, 2),
                            (flow_to_color(flow), 'flow prediction')]
             scalar_slots = []
 
