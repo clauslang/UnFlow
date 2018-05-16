@@ -33,14 +33,14 @@ def flow_to_color(flow, mask=None, max_flow=None):
     print()
     min_val = tf.reduce_min(flow)
 
-    # initialize the variable
-    init_op = tf.initialize_all_variables()
+    # Initialize the session
+    sess = tf.InteractiveSession()
 
-    # run the graph
-    with tf.Session() as sess:
-        sess.run(init_op)  # execute init_op
-        # print the random values that we sample
-        print(sess.run(min_val))
+    # print the product
+    print(min_val.eval())
+
+    # close the session to release resources
+    sess.close()
     print()
 
     if max_flow is not None:
