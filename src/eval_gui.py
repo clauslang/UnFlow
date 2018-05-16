@@ -207,8 +207,6 @@ def _evaluate_experiment(name, input_fn, data_input):
                            (flow_to_color(flow), 'flow prediction')]
             scalar_slots = []
 
-        print(flow.eval())
-
         num_ims = len(image_slots)
         image_ops = [t[0] for t in image_slots]
         scalar_ops = [t[0] for t in scalar_slots]
