@@ -146,7 +146,10 @@ def _evaluate_experiment(name, input_fn, data_input):
 
         #flow_bw_warped = image_warp(flow_bw, flow)
 
-        print(len(truth))
+        print()
+        print('length of truth', len(truth))
+        print('truth:', truth)
+        print()
 
         if len(truth) == 4:
             flow_occ, mask_occ, flow_noc, mask_noc = truth
