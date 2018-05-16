@@ -101,7 +101,6 @@ class Input():
             filenames_1 = list(filenames_1)
             filenames_2 = list(filenames_2)
 
-        print(filenames)
         print(filenames_1)
         print(filenames_2)
 
