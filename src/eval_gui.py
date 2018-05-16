@@ -146,6 +146,8 @@ def _evaluate_experiment(name, input_fn, data_input):
 
         #flow_bw_warped = image_warp(flow_bw, flow)
 
+        print(len(truth))
+
         if len(truth) == 4:
             flow_occ, mask_occ, flow_noc, mask_noc = truth
             flow_occ = resize_output_crop(flow_occ, height, width, 2)
@@ -333,8 +335,6 @@ def main(argv=None):
     for name in FLAGS.ex.split(','):
         result, image_names = _evaluate_experiment(name, input_fn, data_input)
         results.append(result)
-
-    print(image_names)
 
     display(results, image_names)
 
