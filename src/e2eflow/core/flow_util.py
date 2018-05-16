@@ -25,6 +25,8 @@ def flow_to_color(flow, mask=None, max_flow=None):
         mask: flow validity mask of shape [num_batch, height, width, 1].
     """
 
+    print('converting...')
+
     n = 8
     num_batch, height, width, _ = tf.unstack(tf.shape(flow))
     mask = tf.ones([num_batch, height, width, 1]) if mask is None else mask
