@@ -334,6 +334,8 @@ def main(argv=None):
         result, image_names = _evaluate_experiment(name, input_fn, data_input)
         results.append(result)
 
+    print(image_names)
+
     display(results, image_names)
 
 
