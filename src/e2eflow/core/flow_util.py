@@ -32,7 +32,7 @@ def flow_to_color(flow, mask=None, max_flow=None):
 
     print()
     min_val = tf.reduce_min(flow)
-    print(tf.Print(min_val, [min_val]))
+    tf.Print(min_val, [min_val])
     print()
 
     if max_flow is not None:
