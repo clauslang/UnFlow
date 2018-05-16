@@ -29,20 +29,6 @@ def flow_to_color(flow, mask=None, max_flow=None):
     num_batch, height, width, _ = tf.unstack(tf.shape(flow))
     mask = tf.ones([num_batch, height, width, 1]) if mask is None else mask
     flow_u, flow_v = tf.unstack(flow, axis=3)
-
-    print()
-    min_val = tf.reduce_min(flow)
-
-    # Initialize the session
-    sess = tf.InteractiveSession()
-
-    # print the product
-    print(min_val.eval())
-
-    # close the session to release resources
-    sess.close()
-    print()
-
     if max_flow is not None:
         max_flow = tf.maximum(max_flow, 1)
     else:
