@@ -31,7 +31,7 @@ def flow_to_color(flow, mask=None, max_flow=None):
     flow_u, flow_v = tf.unstack(flow, axis=3)
 
     print()
-    print(tf.reduce_min(flow).eval(tf.Session()))
+    print(tf.reduce_min(flow).eval(sess=tf.Session()))
     print()
 
     if max_flow is not None:
