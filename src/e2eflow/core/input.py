@@ -101,9 +101,6 @@ class Input():
             filenames_1 = list(filenames_1)
             filenames_2 = list(filenames_2)
 
-        print(len(filenames_1))
-        print(len(filenames_2))
-
         input_1 = read_png_image(filenames_1, 1)
         input_2 = read_png_image(filenames_2, 1)
         image_1 = self._preprocess_image(input_1)
