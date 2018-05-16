@@ -43,13 +43,7 @@ def flow_to_color(flow, mask=None, max_flow=None):
     im = tf.image.hsv_to_rgb(im_hsv)
 
     # return im * mask
-
-    print()
-    print(mag.get_shape())
-    print(mask.get_shape())
-    print()
-    
-    return mag * mask
+    return mag
 
 
 def flow_error_image(flow_1, flow_2, mask_occ, mask_noc=None, log_colors=True):
