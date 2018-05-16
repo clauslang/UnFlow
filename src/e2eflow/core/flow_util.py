@@ -44,7 +44,7 @@ def flow_to_color(flow, mask=None, max_flow=None):
 
     # return im * mask
 
-    threshold = 100
+    threshold = -100
     mag = tf.expand_dims(mag, -1)
     shape = tf.shape(mag)
     condition = tf.greater(mag, threshold)
