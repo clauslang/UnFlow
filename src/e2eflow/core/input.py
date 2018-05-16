@@ -101,6 +101,10 @@ class Input():
             filenames_1 = list(filenames_1)
             filenames_2 = list(filenames_2)
 
+        print(filenames)
+        print(filenames_1)
+        print(filenames_2)
+
         input_1 = read_png_image(filenames_1, 1)
         input_2 = read_png_image(filenames_2, 1)
         image_1 = self._preprocess_image(input_1)
@@ -109,10 +113,6 @@ class Input():
 
     def _input_test(self, image_dir, hold_out_inv=None):
         input_shape, im1, im2 = self._input_images(image_dir, hold_out_inv)
-
-        print(im1)
-        print(im2)
-
         return tf.train.batch(
             [im1, im2, input_shape],
             batch_size=self.batch_size,
