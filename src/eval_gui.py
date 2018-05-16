@@ -53,6 +53,7 @@ tf.app.flags.DEFINE_boolean('output_backward', False,
 tf.app.flags.DEFINE_boolean('output_png', True, # TODO finish .flo output
                             'Raw output format to use with output_benchmark.'
                             'Outputs .png flow files if true, output .flo otherwise.')
+tf.app.flags.DEFINE_float('threshold', 0)
 FLAGS = tf.app.flags.FLAGS
 
 
@@ -204,7 +205,7 @@ def _evaluate_experiment(name, input_fn, data_input):
                            (im1_diff / 255, 'warp error'),
                            # (im2 / 255, 'second image', 1, 0),
                            # (im2_diff / 255, '|first - second|', 1, 2),
-                           (flow_to_color(flow), 'flow prediction')]
+                           (flow_to_color(flow, threshold=FLAGS.threshold), 'flow prediction')]
             scalar_slots = []
 
         num_ims = len(image_slots)

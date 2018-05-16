@@ -17,7 +17,7 @@ def atan2(y, x):
     return angle
 
 
-def flow_to_color(flow, mask=None, max_flow=None):
+def flow_to_color(flow, mask=None, max_flow=None, threshold=2):
     """Converts flow to 3-channel color image.
 
     Args:
@@ -44,7 +44,6 @@ def flow_to_color(flow, mask=None, max_flow=None):
 
     # return im * mask
 
-    threshold = 1
     mag = tf.expand_dims(mag, -1)
     shape = tf.shape(mag)
     condition = tf.greater(mag, threshold)
