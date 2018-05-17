@@ -64,11 +64,11 @@ def write_rgb_png(z, path, bitdepth=8):
     z = z[0, :, :, :]
 
     z = z.clip(0, 255)
-    print()
-    print('called write rgb png')
-    print('z.shape:', z.shape)
-    print('z.min / z.max', z.min(), '/', z.max())
-    print()
+    # print()
+    # print('called write rgb png')
+    # print('z.shape:', z.shape)
+    # print('z.min / z.max', z.min(), '/', z.max())
+    # print()
 
     with open(path, 'wb') as f:
         writer = png.Writer(width=z.shape[1], height=z.shape[0], bitdepth=bitdepth)
