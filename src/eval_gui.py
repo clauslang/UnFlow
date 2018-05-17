@@ -64,6 +64,9 @@ NUM_EXAMPLES_PER_PAGE = 4
 def write_grayscale_png(z, path):
     z = z[0, :, :, :]
 
+    print(type(z))
+    print(z.shape)
+
     im = PIL.Image.fromarray(z)
     im.save(path)
 
