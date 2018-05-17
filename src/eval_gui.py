@@ -63,6 +63,8 @@ NUM_EXAMPLES_PER_PAGE = 4
 def write_grayscale_png(z, path):
     z = z[0, :, :, :]
 
+    z = np.repeat(z[:, :, np.newaxis], 3, axis=2)
+
     print()
     print('called write rgb png')
     print('z.shape:', z.shape)
@@ -70,7 +72,7 @@ def write_grayscale_png(z, path):
     print()
 
     with open(path, 'wb') as f:
-        writer = png.Writer(width=z.shape[1], height=z.shape[0], bitdepth=1)
+        writer = png.Writer(width=z.shape[1], height=z.shape[0])
         z2list = z.reshape(-1, z.shape[1]*z.shape[2]).tolist()
         writer.write(f, z2list)
 
@@ -277,8 +279,8 @@ def _evaluate_experiment(name, input_fn, data_input):
                         path_error = os.path.join(exp_out_dir, iterstr + '_err.png')
                         # write_rgb_png(image_results[0] * 255, path_overlay)
                         # write_rgb_png(image_results[1] * 255, path_col)
-                        # write_grayscale_png(image_results[2] * 1, path_error)
-                        write_rgb_png(image_results[2] * 255, path_error)
+                        write_grayscale_png(image_results[2] * 255, path_error)
+                        # write_rgb_png(image_results[2] * 255, path_error)
                     if FLAGS.output_benchmark:
                         path_fw = os.path.join(exp_out_dir, iterstr)
                         if FLAGS.output_png:
