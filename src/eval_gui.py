@@ -5,7 +5,7 @@ import shutil
 import tensorflow as tf
 import numpy as np
 import png
-import cv2
+import PIL
 
 from e2eflow.core.flow_util import flow_to_color, flow_error_avg, outlier_pct
 from e2eflow.core.flow_util import flow_error_image
@@ -63,7 +63,9 @@ NUM_EXAMPLES_PER_PAGE = 4
 
 def write_grayscale_png(z, path):
     z = z[0, :, :, :]
-    cv2.imwrite(path, z)
+
+    im = PIL.Image.fromarray(z)
+    im.save(path)
 
 
 def write_rgb_png(z, path, bitdepth=8):
