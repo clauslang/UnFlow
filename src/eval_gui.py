@@ -63,6 +63,7 @@ NUM_EXAMPLES_PER_PAGE = 4
 def write_rgb_png(z, path, bitdepth=8):
     z = z[0, :, :, :]
 
+    z = z.clip(0, 255)
     print()
     print('called write rgb png')
     print('z.shape:', z.shape)
