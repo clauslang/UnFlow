@@ -8,10 +8,12 @@ from PIL import Image
 def pickle_pngs(directory, destination_path):
     memories = []
     file_names = [file_name for file_name in os.listdir(directory) if file_name.endswith('.png')]
+    print(file_names)
     for i, file_name in enumerate(file_names):
         if i % 100 == 0:
             print('converted {} / {} images'.format(i, len(file_names)))
-        img = Image.open(file_name)
+        print(file_name)
+        img = Image.open(directory + file_name)
         img.load()
         array = np.asarray(img)
         memories.append({'image': array, 'sensor_angles': [0, 0, 0, 0]})
