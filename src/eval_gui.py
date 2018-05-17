@@ -252,6 +252,8 @@ def _evaluate_experiment(name, input_fn, data_input):
             try:
                 num_iters = 0
                 while not coord.should_stop() and (max_iter is None or num_iters != max_iter):
+                    if num_iters < 970:
+                        continue
                     all_results = sess.run([flow, flow_bw, flow_fw_int16, flow_bw_int16] + all_ops)
                     flow_fw_res, flow_bw_res, flow_fw_int16_res, flow_bw_int16_res = all_results[:4]
                     all_results = all_results[4:]
