@@ -39,4 +39,4 @@ def create_pngs(pkl_file_path, destination_dir):
 
 if __name__ == "__main__":
     # create_pngs(pkl_file_path="../grey400_original.pkl", destination_dir="../data/nao_raw/grey400/")
-    pickle_pngs('../out/css_nao/', 'grey400_flow.pkl')
+    pickle_pngs('../out/css_nao/', '../grey400_flow.pkl')
