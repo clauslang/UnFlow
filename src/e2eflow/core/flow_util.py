@@ -53,10 +53,7 @@ def flow_to_color(flow, mask=None, max_flow=None, threshold=2):
     thresholded = mag * tf.where(condition, tf.ones(shape), tf.zeros(shape))
     # return thresholded * mask
 
-    tiled = tf.tile(thresholded, [3, 3, 3, 1])
-    repeated = tf.reshape(tiled, [height, width, 3])
-
-    return repeated
+    return condition
 
 
 def flow_error_image(flow_1, flow_2, mask_occ, mask_noc=None, log_colors=True):
