@@ -62,9 +62,19 @@ NUM_EXAMPLES_PER_PAGE = 4
 
 def write_rgb_png(z, path, bitdepth=8):
     z = z[0, :, :, :]
+
+    print()
+    print(z)
+    print()
+
     with open(path, 'wb') as f:
         writer = png.Writer(width=z.shape[1], height=z.shape[0], bitdepth=bitdepth)
         z2list = z.reshape(-1, z.shape[1]*z.shape[2]).tolist()
+
+        print()
+        print(z2list)
+        print()
+
         writer.write(f, z2list)
 
 
