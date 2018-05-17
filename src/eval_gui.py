@@ -63,6 +63,7 @@ NUM_EXAMPLES_PER_PAGE = 4
 
 def write_grayscale_png(z, path):
     z = z[0, :, :, :]
+    z = z.squeeze()
 
     print(type(z))
     print(z.shape)
