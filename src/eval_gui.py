@@ -63,7 +63,7 @@ NUM_EXAMPLES_PER_PAGE = 4
 def write_rgb_png(z, path, bitdepth=8):
     z = z[0, :, :, :]
 
-    z = z.clip(0, 255)
+    # z = z.clip(0, 255)
     # print()
     # print('called write rgb png')
     # print('z.shape:', z.shape)
@@ -261,9 +261,10 @@ def _evaluate_experiment(name, input_fn, data_input):
                         path_col = os.path.join(exp_out_dir, iterstr + '_flow.png')
                         path_overlay = os.path.join(exp_out_dir, iterstr + '_img.png')
                         path_error = os.path.join(exp_out_dir, iterstr + '_err.png')
-                        write_rgb_png(image_results[0] * 255, path_overlay)
-                        write_rgb_png(image_results[1] * 255, path_col)
-                        write_rgb_png(image_results[2] * 255, path_error)
+                        # write_rgb_png(image_results[0] * 255, path_overlay)
+                        # write_rgb_png(image_results[1] * 255, path_col)
+                        # write_rgb_png(image_results[2] * 255, path_error)
+                        write_rgb_png(image_results[2], path_error)
                     if FLAGS.output_benchmark:
                         path_fw = os.path.join(exp_out_dir, iterstr)
                         if FLAGS.output_png:
