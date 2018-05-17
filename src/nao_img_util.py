@@ -8,6 +8,7 @@ from PIL import Image
 def pickle_pngs(directory, destination_path):
     memories = []
     file_names = [file_name for file_name in os.listdir(directory) if file_name.endswith('.png')]
+    file_names.sort()
     print(file_names)
     for i, file_name in enumerate(file_names):
         if i % 100 == 0:
@@ -17,7 +18,7 @@ def pickle_pngs(directory, destination_path):
         img.load()
         array = np.asarray(img)
         memories.append({'image': array, 'sensor_angles': [0, 0, 0, 0]})
-    with gzip.open(destination_path) as destination_file:
+    with gzip.open(destination_path, 'wb') as destination_file:
         pickle.dump(memories, destination_file, pickle.HIGHEST_PROTOCOL)
 
 
