@@ -29,7 +29,7 @@ class NaoInput(Input):
         if not isinstance(skip, list):
             skip = [skip]
 
-        data_dirs = self.data.get_raw_dirs()
+        data_dirs = self.data.get_raw_dirs(dir_name='greyfew')
         height, width = self.dims
 
         filenames = []

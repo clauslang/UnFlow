@@ -12,6 +12,6 @@ class NaoData(Data):
     def _fetch_if_missing(self):
         pass
 
-    def get_raw_dirs(self):
+    def get_raw_dirs(self, dir_name='grey400'):
         # todo: custom data dir from config.ini
-        return ['../data/nao_raw/grey400']
+        return ['../data/nao_raw/' + dir_name]
