@@ -38,7 +38,7 @@ tf.app.flags.DEFINE_string('variant', 'train_2012',
                            'If dataset = mdb, one of {train, test}.')
 tf.app.flags.DEFINE_string('ex', '',
                            'Experiment name(s) (can be comma separated list).')
-tf.app.flags.DEFINE_integer('num', 10,
+tf.app.flags.DEFINE_integer('num', 100,
                             'Number of examples to evaluate. Set to -1 to evaluate all.')
 tf.app.flags.DEFINE_integer('num_vis', 100,
                             'Number of evalutations to visualize. Set to -1 to visualize all.')
