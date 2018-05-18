@@ -133,13 +133,13 @@ def _evaluate_experiment(name, input_fn, data_input):
         im1, im2, input_shape = inputs[:3]
 
         # todo: remove
-        print(input_shape)
+        print(input_shape.eval())
 
         truth = inputs[3:]
 
         height, width, _ = tf.unstack(tf.squeeze(input_shape), num=3, axis=0)
 
-        print(height, width, _)
+        # print(height, width, _)
 
         im1 = resize_input(im1, height, width, resized_h, resized_w)
         im2 = resize_input(im2, height, width, resized_h, resized_w) # TODO adapt train.py
