@@ -178,7 +178,7 @@ class Input():
         shift = shift % len(filenames_extended)
         filenames_extended = list(np.roll(filenames_extended, shift))
 
-        print("I mean, training on {} frame pairs.".format(len(filenames)))
+        print("I mean, training on {} frame pairs.".format(len(filenames_extended)))
 
         filenames_1, filenames_2 = zip(*filenames_extended)
         filenames_1 = list(filenames_1)
