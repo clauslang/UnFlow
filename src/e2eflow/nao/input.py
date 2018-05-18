@@ -61,11 +61,12 @@ class NaoInput(Input):
         shift = shift % len(filenames)
         filenames = list(np.roll(filenames, shift))
 
-        print(filenames)
-
         filenames_1, filenames_2 = zip(*filenames)
         filenames_1 = list(filenames_1)
         filenames_2 = list(filenames_2)
+
+        print(filenames_1)
+        print(filenames_2)
 
         with tf.variable_scope('train_inputs'):
             image_1 = read_png_image(filenames_1)
