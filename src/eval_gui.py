@@ -133,7 +133,7 @@ def _evaluate_experiment(name, input_fn, data_input):
         im1, im2, input_shape = inputs[:3]
 
         # todo: remove
-        print(input_shape.eval())
+        # print(input_shape.eval())
 
         truth = inputs[3:]
 
@@ -243,6 +243,9 @@ def _evaluate_experiment(name, input_fn, data_input):
             shutil.copyfile(config_path, os.path.join(exp_out_dir, 'config.ini'))
 
         with tf.Session(config=sess_config) as sess:
+
+            print(input_shape.eval())
+
             saver = tf.train.Saver(tf.global_variables())
             sess.run(tf.global_variables_initializer())
             sess.run(tf.local_variables_initializer())
