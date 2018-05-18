@@ -29,9 +29,9 @@ from e2eflow.core.losses import DISOCC_THRESH, occlusion, create_outgoing_mask
 from e2eflow.util import convert_input_strings
 
 
-tf.app.flags.DEFINE_string('dataset', 'kitti',
+tf.app.flags.DEFINE_string('dataset', 'nao',
                             'Name of dataset to evaluate on. One of {kitti, sintel, chairs, mdb}.')
-tf.app.flags.DEFINE_string('variant', 'train_2012',
+tf.app.flags.DEFINE_string('variant', 'consecutive',
                            'Name of variant to evaluate on.'
                            'If dataset = kitti, one of {train_2012, train_2015, test_2012, test_2015}.'
                            'If dataset = sintel, one of {train_clean, train_final}.'
