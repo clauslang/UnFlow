@@ -56,11 +56,8 @@ class NaoInput(Input):
 
         input_1 = read_png_image(filenames_1)
         input_2 = read_png_image(filenames_2)
-        # image_1 = self._preprocess_image(input_1)
-        # image_2 = self._preprocess_image(input_2)
-
-        image_1 = input_1
-        image_2 = input_2
+        image_1 = self._preprocess_image(input_1)
+        image_2 = self._preprocess_image(input_2)
 
         return tf.train.batch(
             [image_1, image_2, tf.shape(image_1)],
