@@ -64,7 +64,8 @@ class NaoInput(Input):
         filenames_1 = list(filenames_1)
         filenames_2 = list(filenames_2)
 
-        with tf.variable_scope('train_inputs'):
+        # with tf.variable_scope('train_inputs'):
+        with tf.variable_scope('nao_eval_inputs'):
             image_1 = read_png_image(filenames_1, 1)
             image_2 = read_png_image(filenames_2, 1)
 
