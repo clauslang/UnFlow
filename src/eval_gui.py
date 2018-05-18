@@ -131,6 +131,10 @@ def _evaluate_experiment(name, input_fn, data_input):
     with tf.Graph().as_default(): #, tf.device('gpu:' + FLAGS.gpu):
         inputs = input_fn()
         im1, im2, input_shape = inputs[:3]
+
+        # todo: remove
+        print(input_shape)
+
         truth = inputs[3:]
 
         height, width, _ = tf.unstack(tf.squeeze(input_shape), num=3, axis=0)
