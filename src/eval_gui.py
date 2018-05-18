@@ -244,7 +244,7 @@ def _evaluate_experiment(name, input_fn, data_input):
 
         with tf.Session(config=sess_config) as sess:
 
-            print(input_shape.eval())
+            print(input_shape.eval(sess))
 
             saver = tf.train.Saver(tf.global_variables())
             sess.run(tf.global_variables_initializer())
