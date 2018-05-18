@@ -59,7 +59,12 @@ class NaoInput(Input):
         input_2 = read_png_image(filenames_2, 1)
         image_1 = self._preprocess_image(input_1)
         image_2 = self._preprocess_image(input_2)
-        return tf.shape(input_1), image_1, image_2
+
+        return tf.train.batch(
+            [image_1, image_2, tf.shape(image_1)],
+            batch_size=self.batch_size,
+            num_threads=self.num_threads,
+            allow_smaller_final_batch=True)
 
 
     def input_consecutive_olf(self, sequence=True, needs_crop=True, shift=0, skip=0):
