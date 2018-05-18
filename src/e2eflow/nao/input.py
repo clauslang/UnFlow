@@ -55,8 +55,7 @@ class NaoInput(Input):
                     fn2 = os.path.join(dir_path, files[i + 1])
                     filenames.append((fn1, fn2))
 
-        print("Training on {} frame pairs.".format(len(filenames)))
-
+        print("Evaluating on {} frame pairs.".format(len(filenames)))
 
         shift = shift % len(filenames)
         filenames = list(np.roll(filenames, shift))
@@ -87,4 +86,5 @@ class NaoInput(Input):
             return tf.train.batch(
                 [image_1, image_2, tf.shape(image_1)],
                 batch_size=self.batch_size,
-                num_threads=self.num_threads)
+                num_threads=self.num_threads,
+                allow_smaller_final_batch=True)
