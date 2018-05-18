@@ -6,7 +6,7 @@ import tensorflow as tf
 import numpy as np
 import png
 
-from e2eflow.core.flow_util import flow_to_color, flow_error_avg, outlier_pct
+from e2eflow.core.flow_util import flow_to_color, flow_error_avg, outlier_pct, flow_intensity
 from e2eflow.core.flow_util import flow_error_image
 from e2eflow.nao.data import NaoData
 from e2eflow.nao.input import NaoInput
@@ -217,7 +217,8 @@ def _evaluate_experiment(name, input_fn, data_input):
                            (im1_diff / 255, 'warp error'),
                            # (im2 / 255, 'second image', 1, 0),
                            # (im2_diff / 255, '|first - second|', 1, 2),
-                           (flow_to_color(flow, threshold=FLAGS.threshold), 'flow prediction')]
+                           # (flow_to_color(flow), 'flow prediction')]
+                           (flow_intensity(flow, threshold=FLAGS.threshold), 'flow prediction')]
             scalar_slots = []
 
         num_ims = len(image_slots)
@@ -267,8 +268,8 @@ def _evaluate_experiment(name, input_fn, data_input):
                         path_error = os.path.join(exp_out_dir, iterstr + '_err.png')
                         # write_rgb_png(image_results[0] * 255, path_overlay)
                         # write_rgb_png(image_results[1] * 255, path_col)
-                        # write_grayscale_png(image_results[2] * 255, path_error)
-                        write_rgb_png(image_results[2] * 255, path_error)
+                        write_grayscale_png(image_results[2] * 255, path_error)
+                        # write_rgb_png(image_results[2] * 255, path_error)
                     if FLAGS.output_benchmark:
                         path_fw = os.path.join(exp_out_dir, iterstr)
                         if FLAGS.output_png:
