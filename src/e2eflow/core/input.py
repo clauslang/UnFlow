@@ -201,7 +201,8 @@ class Input():
                 image_2 = self._normalize_image(image_2)
 
             return tf.train.batch(
-                [image_1, image_2],
+                # [image_1, image_2], todo: uncomment
+                [image_1, image_2, tf.shape(image_1)],
                 batch_size=self.batch_size,
                 num_threads=self.num_threads)
 
