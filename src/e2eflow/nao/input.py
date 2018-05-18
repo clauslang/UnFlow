@@ -61,6 +61,8 @@ class NaoInput(Input):
         for fn1, fn2 in filenames:
             filenames_extended.append((fn1, fn2))
 
+        print(filenames_extended)
+
         shift = shift % len(filenames_extended)
         filenames_extended = list(np.roll(filenames_extended, shift))
 
