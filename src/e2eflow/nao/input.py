@@ -67,8 +67,6 @@ class NaoInput(Input):
         print(filenames_1)
         print(filenames_2)
 
-        print(self.num_threads)
-
         with tf.variable_scope('train_inputs'):
             image_1 = read_png_image(filenames_1)
             image_2 = read_png_image(filenames_2)
