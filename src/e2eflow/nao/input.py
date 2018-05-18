@@ -12,7 +12,7 @@ class NaoInput(Input):
     def input_debug(self, hold_out_inv=None):
         return self._input_test('nao_raw/greyfew', hold_out_inv)
 
-    def input_consecutive(self, sequence=True, needs_crop=True, shift=0, skip=0):
+    def input_consecutive_new(self, sequence=True, needs_crop=True, shift=0, skip=0):
         """Assumes that paired images are next to each other after ordering the
         files.
         """
@@ -67,7 +67,7 @@ class NaoInput(Input):
             allow_smaller_final_batch=True)
 
 
-    def input_consecutive_olf(self, sequence=True, needs_crop=True, shift=0, skip=0):
+    def input_consecutive(self, sequence=True, needs_crop=True, shift=0, skip=0):
         """Constructs input of raw data.
 
         Args:
