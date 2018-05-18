@@ -131,8 +131,6 @@ def _evaluate_experiment(name, input_fn, data_input):
     with tf.Graph().as_default(): #, tf.device('gpu:' + FLAGS.gpu):
         inputs = input_fn()
 
-        print(inputs)
-
         im1, im2, input_shape = inputs[:3]
 
         truth = inputs[3:]
