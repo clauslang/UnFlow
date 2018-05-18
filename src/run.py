@@ -193,7 +193,7 @@ def main(argv=None):
                             normalize=False,
                             dims=(nconfig['height'], nconfig['width']))
         tr = Trainer(
-              lambda shift: ninput.input_raw(swap_images=False,
+              lambda shift: ninput.input_raw(swap_images=True,
                                              shift=shift * run_config['batch_size'],
                                              needs_crop=True),
               lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
