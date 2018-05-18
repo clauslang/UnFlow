@@ -57,16 +57,13 @@ class NaoInput(Input):
 
         print("Training on {} frame pairs.".format(len(filenames)))
 
-        filenames_extended = []
-        for fn1, fn2 in filenames:
-            filenames_extended.append((fn1, fn2))
 
-        print(filenames_extended)
+        shift = shift % len(filenames)
+        filenames = list(np.roll(filenames, shift))
 
-        shift = shift % len(filenames_extended)
-        filenames_extended = list(np.roll(filenames_extended, shift))
+        print(filenames)
 
-        filenames_1, filenames_2 = zip(*filenames_extended)
+        filenames_1, filenames_2 = zip(*filenames)
         filenames_1 = list(filenames_1)
         filenames_2 = list(filenames_2)
 
@@ -75,10 +72,6 @@ class NaoInput(Input):
             image_2 = read_png_image(filenames_2)
 
             if needs_crop:
-                # if center_crop:
-                #    image_1 = tf.image.resize_image_with_crop_or_pad(image_1, height, width)
-                #    image_2 = tf.image.resize_image_with_crop_or_pad(image_1, height, width)
-                # else:
                 image_1, image_2 = random_crop([image_1, image_2], [height, width, 3])
             else:
                 image_1 = tf.reshape(image_1, [height, width, 3])
