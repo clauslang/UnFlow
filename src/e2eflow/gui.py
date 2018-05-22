@@ -40,6 +40,7 @@ def display(results, image_names, title="Flow eval"):
                 print(image.min(), image.max())
                 imshow_images.append(ax.imshow(image[0, :, :, 0], "gray"))
             else:
+                print(image.shape)
                 imshow_images.append(ax.imshow(image[0, :, :, :]))
         imshow_image_lists.append(imshow_images)
 
