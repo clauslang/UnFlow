@@ -26,7 +26,7 @@ def flow_intensity(flow, threshold):
     mag = tf.expand_dims(mag, -1)
     shape = tf.shape(mag)
     condition = tf.greater(mag, threshold)
-    thresholded = tf.where(condition, tf.ones(shape, dtype=int), tf.zeros(shape, dtype=int))
+    thresholded = tf.where(condition, tf.ones(shape, dtype=tf.int32), tf.zeros(shape, dtype=tf.int32))
     return tf.multiply(thresholded, 255)
 
 
