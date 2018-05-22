@@ -260,9 +260,6 @@ def _evaluate_experiment(name, input_fn, data_input):
                     flow_fw_res, flow_bw_res, flow_fw_int16_res, flow_bw_int16_res = all_results[:4]
                     all_results = all_results[4:]
                     image_results = all_results[:num_ims]
-
-                    print(image_results[2].min(), image_results[2].max())
-
                     scalar_results = all_results[num_ims:]
                     iterstr = str(num_iters).zfill(6)
                     if FLAGS.output_visual:
@@ -271,7 +268,7 @@ def _evaluate_experiment(name, input_fn, data_input):
                         path_error = os.path.join(exp_out_dir, iterstr + '_err.png')
                         # write_rgb_png(image_results[0] * 255, path_overlay)
                         # write_rgb_png(image_results[1] * 255, path_col)
-                        write_grayscale_png(image_results[2] * 255, path_error)
+                        write_grayscale_png(image_results[2], path_error)
                         # write_rgb_png(image_results[2] * 255, path_error)
                     if FLAGS.output_benchmark:
                         path_fw = os.path.join(exp_out_dir, iterstr)
