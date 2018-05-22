@@ -36,7 +36,7 @@ def display(results, image_names, title="Flow eval"):
             ax.set_yticks([])
             ax.set_xticks([])
             if np.size(image, 3) == 1:
-                imshow_images.append(ax.imshow(image[0, :, :, 0], "gray"))
+                imshow_images.append(ax.imshow(image[0, :, :, 0], "gray", vmin=0, vmax=255))
             else:
                 imshow_images.append(ax.imshow(image[0, :, :, :]))
         imshow_image_lists.append(imshow_images)
