@@ -47,9 +47,9 @@ def display(results, image_names, title="Flow eval"):
             for im, image in zip(imshow_images, image_col):
                 if np.size(image, 3) == 1:
                     print('1', image.shape)
+                    print(image.min(), image.max())
                     im.set_data(image[0, :, :, 0])
                 else:
-                    print('3', image.shape)
                     im.set_data(image[0, :, :, :])
         plt.draw()
 
