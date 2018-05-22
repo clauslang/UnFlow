@@ -24,10 +24,10 @@ def flow_intensity(flow, threshold):
     mag = tf.sqrt(tf.reduce_sum(tf.square(flow), 3))
 
     mag = tf.expand_dims(mag, -1)
-    # shape = tf.shape(mag)
+    shape = tf.shape(mag)
     condition = tf.greater(mag, threshold)
-    # thresholded = mag * tf.where(condition, tf.ones(shape), tf.zeros(shape))
-    return tf.multiply(condition, 255)
+    thresholded = mag * tf.where(condition, tf.ones(shape), tf.zeros(shape))
+    return tf.multiply(thresholded, 255)
 
 
 def flow_to_color(flow, mask=None, max_flow=None):
