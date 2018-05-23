@@ -22,12 +22,14 @@ def flow_intensity(flow, threshold):
     num_batch, height, width, _ = tf.unstack(tf.shape(flow))
 
     mag = tf.sqrt(tf.reduce_sum(tf.square(flow), 3))
-
     mag = tf.expand_dims(mag, -1)
-    shape = tf.shape(mag)
-    condition = tf.greater(mag, threshold)
-    thresholded = tf.where(condition, tf.ones(shape, dtype=tf.int16), tf.zeros(shape, dtype=tf.int16))
-    return tf.multiply(thresholded, 255)
+
+    # shape = tf.shape(mag)
+    # condition = tf.greater(mag, threshold)
+    # thresholded = tf.where(condition, tf.ones(shape, dtype=tf.int16), tf.zeros(shape, dtype=tf.int16))
+    # return tf.multiply(thresholded, 255)
+
+    return mag
 
 
 def flow_to_color(flow, mask=None, max_flow=None):
