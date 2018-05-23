@@ -12,7 +12,6 @@ def pickle_pngs(directory, destination_path):
     for i, file_name in enumerate(file_names):
         if i % 100 == 0:
             print('converted {} / {} images'.format(i, len(file_names)))
-        print(file_name)
         img = Image.open(directory + file_name)
         img.load()
         array = np.asarray(img)
@@ -37,4 +36,4 @@ def create_pngs(pkl_file_path, destination_dir):
 
 if __name__ == "__main__":
     # create_pngs(pkl_file_path="../grey400_original.pkl", destination_dir="../data/nao_raw/grey400/")
-    pickle_pngs('../out/css_nao/', '../grey400_flow_thr5.pkl')
+    pickle_pngs('../out/css_nao_thr5/', '../grey400_flow_thr5.pkl')
