@@ -29,7 +29,7 @@ def flow_intensity(flow, threshold):
     # thresholded = tf.where(condition, tf.ones(shape, dtype=tf.int16), tf.zeros(shape, dtype=tf.int16))
     # return tf.multiply(thresholded, 255)
 
-    return tf.multiply(mag, 10)
+    return tf.multiply(mag, 1)
 
 
 def flow_to_color(flow, mask=None, max_flow=None):
