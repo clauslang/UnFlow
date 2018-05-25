@@ -69,6 +69,12 @@ def write_grayscale_png(z, path):
         writer.write(f, z2list)
 
 
+def save_flow_as_array(z, path):
+    z = z[0, :, :, :]
+    with open(path, 'wb') as f:
+        z.save(f)
+
+
 def write_rgb_png(z, path, bitdepth=8):
     z = z[0, :, :, :]
     with open(path, 'wb') as f:
@@ -94,9 +100,6 @@ def write_flo(flow, filename):
     :return: None
     """
     flow = flow[0, :, :, :]
-
-    print(flow.shape)
-
     f = open(filename, 'wb')
     magic = np.array([202021.25], dtype=np.float32)
     height, width = flow.shape[:2]
@@ -278,7 +281,8 @@ def _evaluate_experiment(name, input_fn, data_input):
                         if FLAGS.output_png:
                             write_rgb_png(flow_fw_int16_res, path_fw  + '_10.png', bitdepth=16)
                         else:
-                            write_flo(flow_fw_res, path_fw + '_10.flo')
+                            # write_flo(flow_fw_res, path_fw + '_10.flo')
+                            save_flow_as_array(flow_fw_res, path_fw + '_10.flo')
                         if FLAGS.output_backward:
                             path_fw = os.path.join(exp_out_dir, iterstr + '_01.png')
                             write_rgb_png(flow_bw_int16_res, path_bw, bitdepth=16)
