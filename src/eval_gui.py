@@ -94,6 +94,9 @@ def write_flo(flow, filename):
     :return: None
     """
     flow = flow[0, :, :, :]
+
+    print(type(flow))
+
     f = open(filename, 'wb')
     magic = np.array([202021.25], dtype=np.float32)
     height, width = flow.shape[:2]
@@ -101,6 +104,9 @@ def write_flo(flow, filename):
     np.int32(width).tofile(f)
     np.int32(height).tofile(f)
     data = np.float32(flow).flatten()
+
+    print(data.shape)
+
     data.tofile(f)
     f.close()
 
