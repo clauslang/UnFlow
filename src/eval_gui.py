@@ -72,7 +72,7 @@ def write_grayscale_png(z, path):
 def save_flow_as_array(z, path):
     z = z[0, :, :, :]
     with open(path, 'wb') as f:
-        np.save(z, f)
+        np.save(f, z)
 
 
 def write_rgb_png(z, path, bitdepth=8):
