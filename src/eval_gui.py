@@ -50,7 +50,7 @@ tf.app.flags.DEFINE_boolean('output_visual', False,
                             'Output flow visualization files.')
 tf.app.flags.DEFINE_boolean('output_backward', False,
                             'Output backward flow files.')
-tf.app.flags.DEFINE_boolean('output_png', True, # TODO finish .flo output
+tf.app.flags.DEFINE_boolean('output_png', False, # TODO finish .flo output
                             'Raw output format to use with output_benchmark.'
                             'Outputs .png flow files if true, output .flo otherwise.')
 tf.app.flags.DEFINE_float('threshold', 0, 'experimental threshold feature')
