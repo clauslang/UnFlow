@@ -276,6 +276,10 @@ def _evaluate_experiment(name, input_fn, data_input):
                         # write_rgb_png(image_results[1] * 255, path_col)
                         write_grayscale_png(image_results[2], path_error)
                         # write_rgb_png(image_results[2] * 255, path_error)
+
+                    print(FLAGS.output_benchmark)
+                    print(FLAGS.output_png)
+
                     if FLAGS.output_benchmark:
                         path_fw = os.path.join(exp_out_dir, iterstr)
                         if FLAGS.output_png:
