@@ -43,6 +43,8 @@ def pickle_arrays(directory, destination_path):
             print('converted {} / {} images'.format(i, len(file_names)))
         array = np.load(directory + file_name)
         memories.append({'image': array, 'sensor_angles': [0, 0, 0, 0]})
+    print('converted all {} images'.format(len(file_names)))
+    print('dumping to pickle file...')
     with gzip.open(destination_path, 'wb') as destination_file:
         pickle.dump(memories, destination_file, 2)
 
