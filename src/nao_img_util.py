@@ -38,6 +38,7 @@ def pickle_arrays(directory, destination_path):
     memories = []
     file_names = [file_name for file_name in os.listdir(directory) if file_name.endswith('.png')]
     file_names.sort()
+    print(file_names)
     for i, file_name in enumerate(file_names):
         if i % 1000 == 0:
             print('converted {} / {} images'.format(i, len(file_names)))
