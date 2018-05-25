@@ -71,9 +71,6 @@ def write_grayscale_png(z, path):
 
 def write_rgb_png(z, path, bitdepth=8):
     z = z[0, :, :, :]
-
-    print(z.shape)
-
     with open(path, 'wb') as f:
         writer = png.Writer(width=z.shape[1], height=z.shape[0], bitdepth=bitdepth)
         z2list = z.reshape(-1, z.shape[1]*z.shape[2]).tolist()
@@ -98,7 +95,7 @@ def write_flo(flow, filename):
     """
     flow = flow[0, :, :, :]
 
-    print(type(flow))
+    print(flow.shape)
 
     f = open(filename, 'wb')
     magic = np.array([202021.25], dtype=np.float32)
@@ -107,9 +104,6 @@ def write_flo(flow, filename):
     np.int32(width).tofile(f)
     np.int32(height).tofile(f)
     data = np.float32(flow).flatten()
-
-    print(data.shape)
-
     data.tofile(f)
     f.close()
 
@@ -279,10 +273,6 @@ def _evaluate_experiment(name, input_fn, data_input):
                         # write_rgb_png(image_results[1] * 255, path_col)
                         write_grayscale_png(image_results[2], path_error)
                         # write_rgb_png(image_results[2] * 255, path_error)
-
-                    print(FLAGS.output_benchmark)
-                    print(FLAGS.output_png)
-
                     if FLAGS.output_benchmark:
                         path_fw = os.path.join(exp_out_dir, iterstr)
                         if FLAGS.output_png:
