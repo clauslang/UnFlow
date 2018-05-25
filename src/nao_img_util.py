@@ -10,7 +10,7 @@ def pickle_pngs(directory, destination_path):
     file_names = [file_name for file_name in os.listdir(directory) if file_name.endswith('.png')]
     file_names.sort()
     for i, file_name in enumerate(file_names):
-        if i % 100 == 0:
+        if i % 1000 == 0:
             print('converted {} / {} images'.format(i, len(file_names)))
         img = Image.open(directory + file_name)
         img.load()
@@ -34,6 +34,20 @@ def create_pngs(pkl_file_path, destination_dir):
             Image.fromarray(image).save(name)
 
 
+def pickle_arrays(directory, destination_path):
+    memories = []
+    file_names = [file_name for file_name in os.listdir(directory) if file_name.endswith('.png')]
+    file_names.sort()
+    for i, file_name in enumerate(file_names):
+        if i % 1000 == 0:
+            print('converted {} / {} images'.format(i, len(file_names)))
+        array = np.load(file_name)
+        memories.append({'image': array, 'sensor_angles': [0, 0, 0, 0]})
+    with gzip.open(destination_path, 'wb') as destination_file:
+        pickle.dump(memories, destination_file, 2)
+
+
 if __name__ == "__main__":
     # create_pngs(pkl_file_path="../grey400_original.pkl", destination_dir="../data/nao_raw/grey400/")
-    pickle_pngs('../out/css_nao_flowintensity/', '../grey400_flow_intensity.pkl')
+    # pickle_pngs('../out/css_nao_flowintensity/', '../grey400_flow_intensity.pkl')
+    pickle_arrays('../out/css_nao_flow/', '../grey400_flow.pkl')
