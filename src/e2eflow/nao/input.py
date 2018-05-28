@@ -20,7 +20,7 @@ class NaoInput(Input):
         if not isinstance(skip, list):
             skip = [skip]
 
-        data_dirs = self.data.get_raw_dirs(dir_name='grey400_two')
+        data_dirs = self.data.get_raw_dirs(dir_name='agency')
 
         filenames = []
         for dir_path in data_dirs:
