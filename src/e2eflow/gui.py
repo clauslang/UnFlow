@@ -11,6 +11,8 @@ def display(results, image_names, title="Flow eval"):
     num_rows = len(results[0][0])
     num_cols = len(results)
 
+    print(image_names)
+
     image_grids = []
     for i in range(num_images):
         image_grid = []
