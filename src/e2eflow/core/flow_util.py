@@ -57,7 +57,7 @@ def flow_to_color(flow, mask=None, max_flow=None):
     im_hsv = tf.stack([im_h, im_s, im_v], 3)
     im = tf.image.hsv_to_rgb(im_hsv)
 
-    im = tf.Print(im, [im_hsv])
+    im = tf.Print(im, [im_hsv, im])
 
     return im * mask
 
