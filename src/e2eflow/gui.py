@@ -46,6 +46,7 @@ def display(results, image_names, title="Flow eval"):
             imshow_images = imshow_image_lists[j]
             for im, image in zip(imshow_images, image_col):
                 if np.size(image, 3) == 1:
+                    print(image)
                     im.set_data(image[0, :, :, 0])
                 else:
                     im.set_data(image[0, :, :, :])
