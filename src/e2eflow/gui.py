@@ -40,7 +40,7 @@ def display(results, image_names, title="Flow eval"):
             if np.size(image, 3) == 1:
                 imshow_images.append(ax.imshow(image[0, :, :, 0], "gray", vmin=0, vmax=255))
             else:
-                if j == 2:
+                if i == 2:
                     print(image.squeeze().shape)
                     print(image.squeeze()[0, 0, 0])
                     print(image.squeeze())
