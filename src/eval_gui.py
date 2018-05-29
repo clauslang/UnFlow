@@ -36,7 +36,7 @@ tf.app.flags.DEFINE_string('variant', 'consecutive',
                            'If dataset = kitti, one of {train_2012, train_2015, test_2012, test_2015}.'
                            'If dataset = sintel, one of {train_clean, train_final}.'
                            'If dataset = mdb, one of {train, test}.')
-tf.app.flags.DEFINE_string('directory', 'temp'
+tf.app.flags.DEFINE_string('directory', 'temp',
                            'input directory within nao_raw')
 tf.app.flags.DEFINE_string('ex', '',
                            'Experiment name(s) (can be comma separated list).')
