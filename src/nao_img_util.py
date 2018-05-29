@@ -50,7 +50,7 @@ def pickle_arrays(directory, destination_path):
 
 
 if __name__ == "__main__":
-    create_pngs(pkl_file_path="../data/nao_raw/agency/agency_1a_original.pkl",
-                destination_dir="../data/nao_raw/agency/")
+    create_pngs(pkl_file_path="../data/nao_raw/blue200_original.pkl",
+                destination_dir="../data/nao_raw/tmp/")
     # pickle_pngs('../out/css_nao_flowintensity/', '../grey400_flow_intensity.pkl')
     # pickle_arrays('../out/css_nao_flow/', '../grey400_flow.pkl')

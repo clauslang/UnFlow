@@ -6,11 +6,9 @@ from e2eflow.core.input import Input, frame_name_to_num, read_png_image, random_
 
 class NaoInput(Input):
 
-    def input_train_2012(self, hold_out_inv=None):
-        return self._input_test('nao_raw/grey400', hold_out_inv)
-
-    def input_debug(self, hold_out_inv=None):
-        return self._input_test('nao_raw/greyfew', hold_out_inv)
+    def __init__(self, data, batch_size, dims, dir_name, *, num_threads=1, normalize=True, skipped_frames=False):
+        super().__init__(data, batch_size, dims, num_threads, normalize, skipped_frames)
+        self.dir_name = dir_name
 
     def input_consecutive(self, sequence=True, shift=0, skip=0):
         """Assumes that paired images are next to each other after ordering the
@@ -20,7 +18,7 @@ class NaoInput(Input):
         if not isinstance(skip, list):
             skip = [skip]
 
-        data_dirs = self.data.get_raw_dirs(dir_name='agency')
+        data_dirs = self.data.get_raw_dirs(dir_name=self.dir_name)
 
         filenames = []
         for dir_path in data_dirs:
