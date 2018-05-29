@@ -7,7 +7,8 @@ from e2eflow.core.input import Input, frame_name_to_num, read_png_image, random_
 class NaoInput(Input):
 
     def __init__(self, data, batch_size, dims, dir_name, *, num_threads=1, normalize=True, skipped_frames=False):
-        super().__init__(data, batch_size, dims, num_threads, normalize, skipped_frames)
+        super().__init__(data, batch_size, dims,
+                         num_threads=num_threads, normalize=normalize, skipped_frames=skipped_frames)
         self.dir_name = dir_name
 
     def input_consecutive(self, sequence=True, shift=0, skip=0):
