@@ -276,7 +276,7 @@ def _evaluate_experiment(name, input_fn, data_input):
                         path_error = os.path.join(exp_out_dir, iterstr + '_err.png')
                         # write_rgb_png(image_results[0] * 255, path_overlay)
                         # write_rgb_png(image_results[1] * 255, path_col)
-                        write_rgb_png(image_results[0], path_overlay)
+                        write_rgb_png(image_results[0] * 255, path_overlay)
                         # write_grayscale_png(image_results[2], path_error)
                         # write_rgb_png(image_results[2] * 255, path_error)
                     if FLAGS.output_benchmark:
