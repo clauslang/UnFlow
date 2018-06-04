@@ -220,14 +220,15 @@ def _evaluate_experiment(name, input_fn, data_input):
             # list of (scalar_op, title)
             scalar_slots = [(flow_error_avg(flow_gt, flow, mask), 'EPE_all')]
         else:
-            image_slots = [(im1 / 255, 'first image'),
+            image_slots = [((im1 * 0.5 + im2 * 0.5) / 255, 'overlay'),
+                           # (im1 / 255, 'first image'),
                            # (im1_pred / 255, 'warped second image', 0, 1),
                            (im1_diff / 255, 'warp error'),
                            # (im2 / 255, 'second image', 1, 0),
                            # (im2_diff / 255, '|first - second|', 1, 2),
                            # (flow_to_color(flow), 'flow prediction')]
                            # (flow_intensity(flow, threshold=FLAGS.threshold), 'flow prediction')]
-                           (forward_warp(flow) * 255, 'forward warp')]
+                           (forward_warp(flow), 'forward warp')]
             scalar_slots = []
 
         num_ims = len(image_slots)
