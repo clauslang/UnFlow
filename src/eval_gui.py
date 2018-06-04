@@ -227,7 +227,7 @@ def _evaluate_experiment(name, input_fn, data_input):
                            # (im2_diff / 255, '|first - second|', 1, 2),
                            # (flow_to_color(flow), 'flow prediction')]
                            # (flow_intensity(flow, threshold=FLAGS.threshold), 'flow prediction')]
-                           (forward_warp(flow), 'forward warp')]
+                           (forward_warp(flow) * 255, 'forward warp')]
             scalar_slots = []
 
         num_ims = len(image_slots)
