@@ -44,7 +44,7 @@ class NaoInput(Input):
                     fn2 = os.path.join(dir_path, files[i + 1])
                     filenames.append((fn1, fn2))
 
-        print("Evaluating on {} frame pairs.".format(len(filenames)))
+        print("Loading {} frame pairs.".format(len(filenames)))
 
         shift = shift % len(filenames)
         filenames = list(np.roll(filenames, shift))
