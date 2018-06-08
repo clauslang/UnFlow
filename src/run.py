@@ -19,6 +19,7 @@ from e2eflow.sintel.data import SintelData
 from e2eflow.sintel.input import SintelInput
 from e2eflow.synthia.data import SynthiaData
 from e2eflow.nao.data import NaoData
+from e2eflow.nao.input import NaoInput
 from e2eflow.cityscapes.data import CityscapesData
 
 
@@ -184,20 +185,12 @@ def main(argv=None):
         nconfig.update(experiment.config['train_nao'])
         convert_input_strings(nconfig, dirs)
         niters = nconfig.get('num_iters', 0)
-        ndata = NaoData(data_dir=dirs['data'],
-                fast_dir=dirs.get('fast'),
-                stat_log_dir=None,
-                development=run_config['development'])
-        ninput = Input(data=ndata,
-                            batch_size=gpu_batch_size,
-                            normalize=False,
-                            dims=(nconfig['height'], nconfig['width']))
+        ndata = NaoData(dirs['data'], development=False)
+        ninput = NaoInput(ndata, batch_size=1, normalize=False, dir_name='grey400', dims=(192, 256))
         tr = Trainer(
-              lambda shift: ninput.input_raw(swap_images=False,
-                                             shift=shift * run_config['batch_size'],
-                                             needs_crop=True),
-              lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
-              # lambda: None,
+              lambda shift: ninput.input_consecutive(),
+              # lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
+              lambda: None,
               params=nconfig,
               normalization=ninput.get_normalization(),
               train_summaries_dir=experiment.train_dir,
