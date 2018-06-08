@@ -11,7 +11,7 @@ class NaoInput(Input):
                          num_threads=num_threads, normalize=normalize, skipped_frames=skipped_frames)
         self.dir_name = dir_name
 
-    def input_consecutive(self, sequence=True, shift=0, skip=0):
+    def input_consecutive(self, sequence=True, shift=0, skip=0, return_shape=True):
         """Assumes that paired images are next to each other after ordering the
         files.
         """
@@ -58,8 +58,15 @@ class NaoInput(Input):
         image_1 = self._preprocess_image(input_1)
         image_2 = self._preprocess_image(input_2)
 
-        return tf.train.batch(
-            [image_1, image_2, tf.shape(image_1)],
-            batch_size=self.batch_size,
-            num_threads=self.num_threads,
-            allow_smaller_final_batch=True)
+        if return_shape:
+            return tf.train.batch(
+                [image_1, image_2, tf.shape(image_1)],
+                batch_size=self.batch_size,
+                num_threads=self.num_threads,
+                allow_smaller_final_batch=True)
+        else:
+            return tf.train.batch(
+                [image_1, image_2],
+                batch_size=self.batch_size,
+                num_threads=self.num_threads,
+                allow_smaller_final_batch=True)

@@ -188,7 +188,7 @@ def main(argv=None):
         ndata = NaoData(dirs['data'], development=False)
         ninput = NaoInput(ndata, batch_size=1, normalize=False, dir_name='grey400', dims=(192, 256))
         tr = Trainer(
-              lambda shift: ninput.input_consecutive(),
+              lambda shift: ninput.input_consecutive(return_shape=False),
               # lambda: einput.input_train_2012(),    # todo: is this appropriate for nao data? what does it do?
               lambda: None,
               params=nconfig,
