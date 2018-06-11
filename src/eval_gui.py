@@ -287,8 +287,7 @@ def _evaluate_experiment(name, input_fn, data_input):
                             write_rgb_png(flow_fw_int16_res, path_fw  + '_10.png', bitdepth=16)
                         else:
                             # write_flo(flow_fw_res, path_fw + '_10.flo')
-                            # save_flow_as_array(flow_fw_res, path_fw + '_fw.npy')
-                            save_flow_as_array(flow_bw_res, path_fw + '_bw.npy')
+                            save_flow_as_array(flow_bw_res, path_fw + '_fw.npy')
                         if FLAGS.output_backward:
                             path_fw = os.path.join(exp_out_dir, iterstr + '_01.png')
                             write_rgb_png(flow_bw_int16_res, path_bw, bitdepth=16)
