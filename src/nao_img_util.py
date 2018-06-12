@@ -53,4 +53,4 @@ if __name__ == "__main__":
     # create_pngs(pkl_file_path="../data/nao_raw/agency_1b_original_19to35.pkl",
     #             destination_dir="../data/nao_raw/tmp/")
     # pickle_pngs('../out/css_nao_flowintensity/', '../grey400_flow_intensity.pkl')
-    pickle_arrays('../out/css_nao_flow_bw/', '../grey400_flow_bw.pkl')
+    pickle_arrays('../out/css_nao_fromscratch/', '../grey400_flow_fromscratch.pkl')
